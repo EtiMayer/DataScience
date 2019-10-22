@@ -303,6 +303,15 @@ SELECT DepartmentName,
 FROM Exc_2f_revised
 WHERE degree > 80.0
 GROUP BY DepartmentName
+
+---2f -- Tomas Correction
+SELECT DepartmentName,
+  COUNT (DISTINCT StudentId) AS Total_Std_Above80 ,
+SUM (COUNT(*)) OVER() AS denominator,
+  100.0* COUNT (degree)/SUM (COUNT(*)) OVER() AS [Percent_above80]
+FROM Exc_2f_revised
+WHERE degree > 80.0
+GROUP BY DepartmentName
 ;
 
 
@@ -337,6 +346,14 @@ WHERE degree < 60.0
 GROUP BY DepartmentName
 
 
+---2g -- Tomas Correction
+SELECT DepartmentName,
+   COUNT (DISTINCT StudentId) AS Total_Below60 ,
+SUM (COUNT(*)) OVER() AS denominator,
+  100.0* COUNT (degree)/(SUM (COUNT(*)) OVER()) AS [Percent_below60]
+FROM Exc_2f_revised
+WHERE degree < 60.0
+GROUP BY DepartmentName
 
 
 
@@ -463,11 +480,12 @@ INNER JOIN dbo.Courses$ b
 	ON a.CourseId = b.CourseId
 GROUP BY a.StudentId, a.CourseId,a.degree, b.DepartmentID
 
+select * from Students_Degree
 
----------------------------------------revised answer 3a
+---------------------------------------revised answer 3b
 CREATE VIEW Students_Degree_view 
 AS SELECT a.StudentId
-		 ,SUM (COUNT(d.CourseId) 
+		 ,SUM (COUNT(a.CourseId) 
 			IN (SELECT c.StudentId
 						,d.CourseId
 				  FROM dbo.Classrooms$ c
@@ -479,3 +497,23 @@ FROM dbo.Classrooms$ a
 INNER JOIN dbo.Courses$ b
 	ON a.CourseId = b.CourseId
 GROUP BY a.StudentId, a.CourseId,a.degree, b.DepartmentID
+
+
+
+CREATE VIEW StudentList_v
+AS
+SELECT a.StudentId, a.FirstName, a.LastName,
+       COUNT(DISTINCT b.CourseId) as num_courses,
+       AVG(CASE WHEN (c.DepartmentId = 1 ) THEN (b.degree) END) as English_degree,
+       AVG(CASE WHEN (c.DepartmentId = 2 ) THEN (b.degree) END) as Arts_degree,
+       AVG(CASE WHEN (c.DepartmentId = 3 ) THEN (b.degree) END) as Science_degree,
+       AVG(CASE WHEN (c.DepartmentId = 4 ) THEN (b.degree) END) as Sports_degree,
+       AVG(b.degree) as General_degree
+FROM Students$ a
+LEFT OUTER JOIN Classrooms$ b
+  ON a.StudentId = b.StudentId
+LEFT OUTER JOIN Courses$ c
+  ON b.CourseId = c.CourseId
+GROUP BY a.StudentId, a.FirstName, a.LastName;
+
+SELECT * FROM StudentList_v

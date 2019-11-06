@@ -1,14 +1,14 @@
 ﻿-------------------------------2a-------------------------------
 SELECT a. CourseName, a.CourseId, a.DepartmentID, b.StudentID
 INTO dbo.Exc_2
-	FROM dbo.Courses$ a
-INNER JOIN  dbo.Classrooms$ b
+	FROM dbo.Courses a
+INNER JOIN  dbo.Classrooms b
 	ON a.CourseId = b.CourseId
 
 
 SELECT a.DepartmentId, a.DepartmentName, b.StudentId
 INTO dbo.Exc_2a
-	 FROM dbo.Departments$ a
+	 FROM dbo.Departments a
 INNER JOIN dbo.Exc_2 b
 	ON a.DepartmentId = b.DepartmentID
 
@@ -143,7 +143,7 @@ GROUP BY Total_Students
 -------------------------------2d-------------------------------
 
 SELECT Gender, COUNT (Gender) AS Total_Gender
-FROM dbo.Students$
+FROM dbo.Students
 GROUP BY Gender
 
 --Incorrect Statement. More females! :)
@@ -153,10 +153,10 @@ GROUP BY Gender
 
 SELECT a. CourseName, a.CourseId, b.StudentID, c.Gender
 INTO dbo.Exc_2e
-	FROM dbo.Courses$ a
-INNER JOIN  dbo.Classrooms$ b
+	FROM dbo.Courses a
+INNER JOIN  dbo.Classrooms b
 	ON a.CourseId = b.CourseId
-INNER JOIN dbo.Students$ c
+INNER JOIN dbo.Students c
 	ON b.StudentId = c.StudentId
 
 SELECT * FROM dbo.Exc_2e 
@@ -212,10 +212,10 @@ WHERE (((Females * 1.0) / (Total_students * 1.0))*100.0) >70.0
 
 SELECT a. CourseName, a.CourseId, b.StudentID, c.Gender
 INTO dbo.Exc_2e_revised
-	FROM dbo.Courses$ a
-INNER JOIN  dbo.Classrooms$ b
+	FROM dbo.Courses a
+INNER JOIN  dbo.Classrooms b
 	ON a.CourseId = b.CourseId
-INNER JOIN dbo.Students$ c
+INNER JOIN dbo.Students c
 	ON b.StudentId = c.StudentId
 
 SELECT * FROM dbo.Exc_2e_revised
@@ -272,10 +272,10 @@ WHERE (((Females * 1.0) / (Total_students * 1.0))*100.0) >70.0
 
 SELECT a.DepartmentName, b.CourseId,c.StudentId, c. degree
 INTO dbo.Exc_2f
-	 FROM dbo.Departments$ a
-INNER JOIN dbo. Courses$ b
+	 FROM dbo.Departments a
+INNER JOIN dbo. Courses b
 	ON a.DepartmentId = b.DepartmentID
-INNER JOIN dbo.Classrooms$ c 
+INNER JOIN dbo.Classrooms c 
 	ON b.CourseId = c.CourseId
 
 SELECT DepartmentName, 
@@ -290,10 +290,10 @@ GROUP BY DepartmentName
 ---------------------------------------revised answer 2f
 SELECT a.DepartmentName, b.CourseId,c.StudentId, c. degree
 INTO dbo.Exc_2f_revised
-	 FROM dbo.Departments$ a
-INNER JOIN dbo. Courses$ b
+	 FROM dbo.Departments a
+INNER JOIN dbo. Courses b
 	ON a.DepartmentId = b.DepartmentID
-INNER JOIN dbo.Classrooms$ c 
+INNER JOIN dbo.Classrooms c 
 	ON b.CourseId = c.CourseId
 
 
@@ -320,10 +320,10 @@ GROUP BY DepartmentName
 
 SELECT a.DepartmentName, b.CourseId,c.StudentId, c. degree
 INTO dbo.Exc_2f
-	 FROM dbo.Departments$ a
-INNER JOIN dbo. Courses$ b
+	 FROM dbo.Departments a
+INNER JOIN dbo. Courses b
 	ON a.DepartmentId = b.DepartmentID
-INNER JOIN dbo.Classrooms$ c 
+INNER JOIN dbo.Classrooms c 
 	ON b.CourseId = c.CourseId
 
 SELECT DepartmentName, 
@@ -363,12 +363,12 @@ GROUP BY DepartmentName
 
 SELECT a.TeacherId, (d.FirstName + d.LastName) AS Teacher_Name, a.CourseId, C.degree
 INTO dbo.Exc_2h
-	FROM dbo.Courses$ a
-INNER JOIN  dbo.Teachers$ b
+	FROM dbo.Courses a
+INNER JOIN  dbo.Teachers b
 	ON a.TeacherId = b.TeacherId
-INNER JOIN dbo.Classrooms$ c
+INNER JOIN dbo.Classrooms c
 	ON a.CourseId = c.CourseId
-INNER JOIN dbo.Teachers$ d
+INNER JOIN dbo.Teachers d
 	ON a.TeacherId = d.TeacherId
 
 SELECT * FROM dbo.Exc_2h
@@ -386,12 +386,12 @@ AS SELECT a.courseName AS Course_name,
 		  b.DepartmentName AS Dep_name,
 		  c.Teacher_Name AS Teacher_Name,
 		  d.StudentId AS Total_Students
-FROM dbo.Courses$ a 
-INNER JOIN dbo.Departments$ b 
+FROM dbo.Courses a 
+INNER JOIN dbo.Departments b 
 	ON a.DepartmentID = b.DepartmentId
 INNER JOIN dbo.Exc_2h c
 	ON a.TeacherId = c.TeacherId
-INNER JOIN dbo.Classrooms$ d
+INNER JOIN dbo.Classrooms d
 	ON a.CourseId = d.CourseId
 GROUP BY courseName,DepartmentName,c.Teacher_Name, d.StudentId
 
@@ -414,12 +414,12 @@ AS SELECT a.courseName,
 		  b.DepartmentName,
 		  c.Teacher_Name,
 		  COUNT (DISTINCT d.StudentId) AS Sudent_Id
-FROM dbo.Courses$ a 
-INNER JOIN dbo.Departments$ b 
+FROM dbo.Courses a 
+INNER JOIN dbo.Departments b 
 	ON a.DepartmentID = b.DepartmentId
 INNER JOIN dbo.Exc_2h c
 	ON a.TeacherId = c.TeacherId
-INNER JOIN dbo.Classrooms$ d
+INNER JOIN dbo.Classrooms d
 	ON a.CourseId = d.CourseId
 GROUP BY courseName,DepartmentName,Teacher_Name
 
@@ -436,8 +436,8 @@ AS SELECT a.StudentId AS Student_ID,
 		  COUNT(a.CourseId) AS courses_taken,
 		  a.degree AS Course_degree,
 		  b. departmentID Dep_ID
-FROM dbo.Classrooms$ a 
-INNER JOIN dbo.Courses$ b
+FROM dbo.Classrooms a 
+INNER JOIN dbo.Courses b
 	ON a.CourseId = b.CourseId
 GROUP BY a.StudentId, a.CourseId,a.degree, b.DepartmentID
 
@@ -470,13 +470,13 @@ AS SELECT a.StudentId AS Student_ID
 		 ,SUM (COUNT(a.CourseId) 
 			FROM (SELECT c.StudentId
 						,d.CourseId
-				  FROM dbo.Classrooms$ c
-				  INNER JOIN dbo.Courses$ d
+				  FROM dbo.Classrooms c
+				  INNER JOIN dbo.Courses d
 					ON c.CourseId = d.CourseId)) AS Courses_taken
 		  ,a.degree AS Mean_Degree
 		  ,b. departmentID AS Dep_ID
-FROM dbo.Classrooms$ a 
-INNER JOIN dbo.Courses$ b
+FROM dbo.Classrooms a 
+INNER JOIN dbo.Courses b
 	ON a.CourseId = b.CourseId
 GROUP BY a.StudentId, a.CourseId,a.degree, b.DepartmentID
 
@@ -488,13 +488,13 @@ AS SELECT a.StudentId
 		 ,SUM (COUNT(a.CourseId) 
 			IN (SELECT c.StudentId
 						,d.CourseId
-				  FROM dbo.Classrooms$ c
-				  INNER JOIN dbo.Courses$ d
+				  FROM dbo.Classrooms c
+				  INNER JOIN dbo.Courses d
 					ON c.CourseId = d.CourseId)) AS Courses_Taken
 		  ,AVG (a.degree) AS Mean_Degree
 		  ,b. departmentId
-FROM dbo.Classrooms$ a 
-INNER JOIN dbo.Courses$ b
+FROM dbo.Classrooms a 
+INNER JOIN dbo.Courses b
 	ON a.CourseId = b.CourseId
 GROUP BY a.StudentId, a.CourseId,a.degree, b.DepartmentID
 
@@ -509,10 +509,10 @@ SELECT a.StudentId, a.FirstName, a.LastName,
        AVG(CASE WHEN (c.DepartmentId = 3 ) THEN (b.degree) END) as Science_degree,
        AVG(CASE WHEN (c.DepartmentId = 4 ) THEN (b.degree) END) as Sports_degree,
        AVG(b.degree) as General_degree
-FROM Students$ a
-LEFT OUTER JOIN Classrooms$ b
+FROM Students a
+LEFT OUTER JOIN Classrooms b
   ON a.StudentId = b.StudentId
-LEFT OUTER JOIN Courses$ c
+LEFT OUTER JOIN Courses c
   ON b.CourseId = c.CourseId
 GROUP BY a.StudentId, a.FirstName, a.LastName;
 

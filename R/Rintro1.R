@@ -44,6 +44,7 @@ str(pi)
 
 ### generate a vector of numbers
 v1 <- c(1,2,3,4,5,6)
+V2 <-C(49,33,61,22)
 min(v1)
 max(v1)
 mean(v1)
@@ -115,6 +116,7 @@ v9 <- letters
 v10 <- LETTERS
 v9[5]
 v10[1:3]
+v10[c(5,15,22)]
 
 length(v10)
 v10[seq(1,26,3)]
@@ -134,6 +136,7 @@ a * a
 
 a
 a - c(2,4)  ### cycling
+a * c(2,4) 
 
 
 ############################
@@ -151,6 +154,7 @@ m1
 m1 <- matrix(c(1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4), nrow=4, ncol=4, byrow=FALSE)
 dim(m1)
 m1
+class(m1)
 
 ## define only the number of rows
 m1 <- matrix(c(1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4), nrow=4)
@@ -190,14 +194,14 @@ m1 + t(m1)
 m1 - t(m1)
 
 m1 + m2 ## doesn't work
-m1 + as.vector(m2) ## doesn't work
+m1 + as.vector(m2) ## work
 
 
 ## Multiplication/Division
 ## m1 [4x4], m2 [1x4], m3 [4x2]
 m1 * m2  ## doesn't work
 m1 %*% m2 ## this works 
-crossprod(m1,m2)  ## 
+tcrossprod(m1,m2)  ## 
 
 m1 %*% m3
 m2 %*% m3
@@ -225,14 +229,14 @@ I
 s
 solve(s)
 s %*% solve(s)
-
+?solve
 ##########################
 ### Arrays
 ##########################
 
 ### Matrices can represent bidimentional objects. 
 ### To represent multidimentional object we use arrays
-a1 <- array(1:24, c(3,4,2))
+a1 <- array(1:24, c(2,2,5))
 a1
 class(a1)
 str(a1)
@@ -293,7 +297,7 @@ names(l4)
 
 l4[1]
 l4$numlst
-
+l4[[1]]
 l4[2]
 l4[[2]]
 l4$chrlst
@@ -302,12 +306,12 @@ l4$chrlst
 l4[[2]][[1]][2]   # this will return the character "c" from the second object (chrlst)
 
 ### list of lists
-l5 <- list(list(model="2018 Toyota Camry Hybrid", price=32400, mpg=52),
-           list(model="2018 Ford Fusion Hybrid", price=37370 , mpg=42),
-           list(model="2018 Toyota Prius", price=30565 , mpg=52),
-           list(model="2018 Hyundai Ioniq",price=28300, mpg=58),
-           list(model="2018 Kia Optima Hybrid",price=35210, mpg=43),
-           list(model="2018 Ford C-Max Hybrid",price=27275, mpg=40)
+l5 <- list(a1=list(model="2018 Toyota Camry Hybrid", price=32400, mpg=52),
+           a2=list(model="2018 Ford Fusion Hybrid", price=37370 , mpg=42),
+           a3=list(model="2018 Toyota Prius", price=30565 , mpg=52),
+           a4=list(model="2018 Hyundai Ioniq",price=28300, mpg=58),
+           a5=list(model="2018 Kia Optima Hybrid",price=35210, mpg=43),
+           a6=list(model="2018 Ford C-Max Hybrid",price=27275, mpg=40)
       )
 
 l5
@@ -315,7 +319,7 @@ class(l5)
 str(l5)
 summary(l5)
 
-l5$model
+l5$model #error
 l5[1]
 l5[[1]]
 l5[[2]]
@@ -412,7 +416,7 @@ b <- as.numeric(a)
 b
 
 ### converting date strings into date objects
-a <- c('2015-04-22',"2017/03/06","16/03/2011")
+a <- c('2015-04-22',"2017/03/06","16/03/2011","24-04-2019")
 a
 b <- as.Date(a)
 b
@@ -424,6 +428,9 @@ is.na(c)
 ### NULL deletes a column in a data frame 
 df <- mtcars
 df$mpg <- NULL
+
+datasets::
+
 
 set.seed(4)
 names.vec <- c('Avi', 'Ben', 'Gad', 'Dan', 'Harel', 'Vered', 'Zelig')

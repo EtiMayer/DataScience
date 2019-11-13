@@ -53,7 +53,7 @@ class(e)
 str(e)
 dim(e)
 colnames(e)
-
+rownames(e)
 #### add a new column
 df
 df2 <- cbind(df, available=c(TRUE,FALSE,TRUE,TRUE,TRUE,FALSE))
@@ -81,6 +81,9 @@ summary(s2)
 
 
 s3 <- c("I","love","data","science")
+s10 <-c("x1","x2","x3","x4")
+s11 <-paste("y",paste(s10,colapse  = "+"),sep = "~")
+s11
 
 s4 <- paste(s1,collapse=" ")
 s4
@@ -149,12 +152,20 @@ dt <- Sys.time()  ## get system date-time
 
 dt
 format(dt,format="%d-%m-%Y")  ## date format: '22-10-2014'
-format(dt,format="%m/%d/%Y")  ## date format: '10/22/2014'
+format(dt,format="%m/%d/%y")  ## date format: '10/22/2014'
 format(dt,format="%H:%M")     ## time format: '17:05'
-format(dt,format="%I:%M %p")  ## time format: '05:05 PM'
+format(dt,format="%I:%M %A")  ## time format: '05:05 PM'
 
 timestamp()
 date()
+
+d3 <- "10-02-2015"
+d3
+class(d3)
+
+d4 <-as.Date(d3,format = "%d-%m-%Y")
+d4
+class(d4)
 
 ### Sequences
 1:10
@@ -178,14 +189,20 @@ for (n in 1:4) {
   print(sample(c(1,2,3,4,5,6,7,8,9,10),3))
 }
 
-runif(n=10, min=0, max=1)  ## 10 random numbers between 0 and 1
+round(runif(n=10, min=0, max=1))  ## 10 random numbers between 0 and 1
 runif(n=5, min=-3, max=3)  ## 3 random numbers between -3 and 3
 
 ## normal distribution
 rnorm(n=10, mean=5, sd=2)
 
+rnd<-rnorm(n=10000,mean = 5,sd=2)
+hist(rnd)
+
 ## binomial distribution
 rbinom(n=10, size=1, prob=0.4)
+
+rnd2<-rbinom(n=1000,size=1,prob = 0.4)
+hist(rnd2)
 
 ################################################################
 ######  Conditional expressions - return a boolean response
@@ -224,6 +241,7 @@ cities = c('Jerusalem', 'Tel Aviv', 'Haifa')
 !('Jerusalem' %in% cities)  ## not in
 !('Holon' %in% cities)      ## not in
 
+a != b
 ############################################
 ### Apply and friends
 ############################################
@@ -234,6 +252,7 @@ cities = c('Jerusalem', 'Tel Aviv', 'Haifa')
 m1 <- matrix(c(rep(1,5),rep(2,5),rep(3,5),rep(4,5),rep(5,5)),ncol=5,byrow=T)
 m1
 apply(X = m1, MARGIN = 1, FUN = sum)
+apply(m1,1,sum)
 apply(X = m1, MARGIN = 2, FUN = sum)
 
 
@@ -248,6 +267,8 @@ l1
 
 
 lapply(l1, sum)
+lapply(l1,colSums) #sum of each row
+
 ### We can use the selection operator `[` for extracting values at the same position
 ### Get the element of the third column of each element of a list 
 lapply(l1, "[",,3)  
@@ -285,9 +306,10 @@ m1 == m2
 
 ### generate a list of vectors containing letters repeated 4 times each 
 mapply(rep, LETTERS[1:6], 4, SIMPLIFY = FALSE)
-
+mapply(rep, LETTERS[1:6], 4, SIMPLIFY = TRUE)
 ### what will this generate?
 mapply(rep, LETTERS[1:6], 6:1, SIMPLIFY = FALSE)
+mapply(rep, LETTERS[1:6], 6:1, SIMPLIFY = TRUE)
 
 #####################################################################
 ############  Programming with R
@@ -303,11 +325,34 @@ y <- 0
 if( x > 1 ) { y = 3 }
 c(x,y)
 
+x <- 0
+y <- 0
+if( x > 1 ) {
+  y = 3
+}
+c(x,y)
+
+
 ###  if (condition) { ... } else { ... }
 x <- 5
 y <- 0
-if( x > 5 ) { y = 10 } else { y = 5 }
+if( x > 5 ) { 
+  y = 10
+} else { 
+  y = 5
+}
 c(x,y)
+
+if (x > 5){
+  y=10
+} else if (x > 3) {
+  y=2
+} else {
+  y=5
+}
+c(x,y)
+
+ifelse(x > 5, 10,ifelse(x > 3, 2, 5))
 
 ###  ifelse(condition, value1, value2) 
 x <- 5
@@ -347,10 +392,7 @@ while(x < 5) {
 
 ### permanent recursion
 x <- 0
-while(TRUE) {
-  x <- x + 1
-  print(x)
-}
+
 ## how can we prevent it from running infinitely? 
 
 ## repeat works like the last while example.

@@ -450,6 +450,8 @@ for(n in seq(0.5,5,0.5)) {
   abline(h=y, lwd=n)
   y <- y + 1
 }
+
+)
 ### write the values of the line width 0.2 points over the line
 text(x=rep(3,9),y = seq(1.2,10.2,1),labels = paste("lwd=",seq(0.5,5,0.5)))
 
@@ -500,23 +502,30 @@ for(x in 1:4) {
   }
 }
 
-### barplot
-barplot(df$mpg)
+### barplot - Categorial Graph
+barplot(mtcars$mpg)
+barplot(mtcars$cyl)
+barplot(table(mtcars$cyl))
+mtcars$cyl <-factor(mtcars$cyl)
+
 
 ### histograms and boxplots
 x <- rnorm(400, mean=40, sd=15)
 hist(x)
 y <- rbinom(1:400, 2, 0.3)
 summary(y)
+
 table(y)
 boxplot(x ~ y)
+boxplot(x)
 
-t1 <- table(v2)
+
+t1 <- table(y)
 t1
 pie(t1)
 
 scatter.smooth(x)
-
+scatter.smooth(x,col=y)
 ### adding color to a plot
 mycol <- ifelse(x >44,"red","blue")
 scatter.smooth(x, col=mycol)

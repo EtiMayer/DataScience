@@ -20,6 +20,7 @@ iris2
 
 #### selection of columns
 iris2 %>% select(Sepal.Length, Sepal.Width)
+select(iris2,Sepal.Length, Sepal.Width)
 
 ### selection of rows using a condition
 iris2 %>% filter(Species=="setosa")
@@ -115,7 +116,7 @@ plot(iris3$Sepal.Length ~ iris3$Sepal.Width)
 ### Main graph: ggplot(data = <mydata>, aes( x= <X_var>, y= <Y_var>) ) +
 ### geometry       geom_XXXXX()
 ggplot(data=iris3) +
-  geom_point(mapping = aes(x = Sepal.ratio, y = Petal.ratio))
+  geom_point(mapping = aes(x = iris3$Sepal.Width, y = iris3$Sepal.Length))
 
 ### adding color by Species
 ggplot(data=iris3) +
@@ -132,7 +133,7 @@ ggplot(data=iris3) +
 
 ### define size by Species 
 ggplot(data=iris3) +
-  geom_point(mapping = aes(x = Sepal.ratio, y = Petal.ratio, size=Species))
+  geom_point(mapping = aes(x = Sepal.ratio, y = Petal.ratio, size=Species , color=Species))
 
 ### define stroke by Petal.Width (doesn't work with factors)
 ggplot(data=iris3) +
@@ -143,17 +144,17 @@ ggplot(data=iris3) +
 ggplot(data=iris3) +
   geom_point(mapping = aes(x = Sepal.ratio, y = Petal.ratio, 
                            color=Species,shape=Species, 
-                           alpha=Species, size=as.numeric(Species)))
+                           alpha=Sepal.Length, size=as.numeric(Species)))
 
 ########## Separate graphs for each class: Facets
 
 ggplot(data=iris3) +
   geom_point(mapping = aes(x = Sepal.ratio, y = Petal.ratio)) +
-  facet_wrap(~ Species, nrow = 1) 
+  facet_wrap(~ Species, nrow = 1) #Ctegorial Graph
 
 ggplot(data=iris3) +
   geom_point(mapping = aes(x = Sepal.ratio, y = Petal.ratio, col=Species)) +
-  facet_grid(round(Sepal.Length,0) ~ round(Petal.Length,0))
+  facet_grid(round(Sepal.Length,0) ~ round(Petal.Length,0)) #matrix graph
 
 ########### Combining two geometric objects into one graph
 

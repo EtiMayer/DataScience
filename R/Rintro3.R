@@ -263,10 +263,11 @@ ggplot(data = iris3) +
 #######################################################################
 
 #### grep
-grep("a", c("abc", "def", "cba a", "aa"), value=FALSE)  ### return indices
+grep("a", c("abc", "def", "cba a", "aa"), value=FALSE)  ### return index (defualt)
 grep("a", c("abc", "def", "cba a", "aa"), value=TRUE)   ### return values
 
 head(colours())
+length(colours())
 grep("orange",colours())
 grep("orange",colours(),value=T)
 
@@ -317,7 +318,7 @@ strsplit(c("The boy is playing with his car, his father is talking on the phone"
 
 ### separating by a point
 strsplit(c("The boy is playing with his car. His father is talking on the phone"),split='\\.')
-
+strsplit(c("The boy is playing with his car. His father is talking on the phone"),split='.a')  #do not use this
 
 ####################################################
 ############   Functions
@@ -455,9 +456,10 @@ class(mydata)
 str(mydata)
 
 ####### Excel
+
 library(xlsx)
 df1 <- read.xlsx("excel-example.xlsx",sheetIndex = 1)
-df2 <- read.xlsx("excel-example.xlsx",sheetIndex = 2)
+df2 <- read.xlsx("excel-example.xlsx",sheetIndex = 2,endRow=9)
 
 ### Write a data.frame to an excel file
 write.xlsx(df1, "one-sheet-example.xlsx", sheetName="Data Frame")
@@ -545,6 +547,7 @@ xmldoc <- xmlParse(myxml)
 rootNode <- xmlRoot(xmldoc)
 rootNode[1]
 rootNode[2]
+rootNode[3]
 
 ########################
 #### JSON files
@@ -565,10 +568,17 @@ json_df <- as.data.frame(json_data)
 
 #### To be able to query the database we need to create a new ODBC DNS on the windows computer
 
+####Linux Server:
+#con <- dbConnect(odbc::odbc(),
+  .connection
 
 library(DBI)
-con <- dbConnect(odbc::odbc(), "tcds")
-sql <- "SELECT * FROM acs2015_country_data"
-acs <- dbGetQuery(con, sql)
+con <- dbConnect(odbc::odbc(), "College;Trusted_connection=yes;")
+sql <- "SELECT * FROM College.dbo.Students"
+students <- dbGetQuery(con, sql)
+courses <-dbGetQuery(con, "SELECT * FROM College.dbo.Courses")
+departments <-dbGetQuery(con, "SELECT * FROM College.dbo.Departments")
+classrooms <-dbGetQuery(con, "SELECT * FROM College.dbo.Classrooms")
+teachers <-dbGetQuery(con, "SELECT * FROM College.dbo.Teachers")
 dbDisconnect(con)
 

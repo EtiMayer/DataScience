@@ -5,7 +5,7 @@ library(dplyr)
 library(ggplot2)
 
 ### Import the titanic dataset
-titanic <- read.csv(paste(path,"../data/titanic.csv",sep="/"))
+titanic <- read.csv("../data/titanic.csv")
 head(titanic)
 
 ##################################################
@@ -13,9 +13,10 @@ head(titanic)
 ##################################################
 passangers = nrow(titanic)
 survived = sum(titanic['Survived'])
+titanic$Survived
 
 print(paste("We have", passangers, "passangers but only", survived, "of them survived (", 
-            survived/passangers*100, "%)"))
+            format(round(survived/passangers*100, 2)), "%)"))
 
 ###################################################
 #### Missing values
@@ -42,7 +43,7 @@ table(sex=titanic$Sex, surv=titanic$Survived)
 
 ## using dplyr
 titanic %>% group_by(Sex) %>% summarise(count=n(),survived=sum(Survived),percent=(sum(Survived)/n()*100))
-
+titanic %>% unique() %>% group_by(Sex) %>% summarise(count=n(),survived=sum(Survived),percent=(sum(Survived)/n()*100))
 ## Age distribution and survival
 ## Plot the Age frequencies of the passangers. (use an histogram)
 
@@ -95,7 +96,7 @@ titanic <- titanic %>%
 
 table(titanic$AgeGroup)
 
-titanic %>% 
+titanic %>% select(Sex,AgeGroup,Survived) %>% unique() %>%
   group_by(AgeGroup) %>% 
   summarise(count=n(),survived=sum(Survived),percent=(sum(Survived)/n()*100))
 
@@ -135,6 +136,10 @@ titanic %>%
   group_by(Embarked) %>% 
   summarise(count=n(),survived=sum(Survived),percent=(sum(Survived)/n()*100))
 
+
+titanic %>% filter(Embarked %in% c('C','Q')) %>%  ###filter = isin
+  group_by(Embarked) %>% 
+  summarise(count=n(),survived=sum(Survived),percent=(sum(Survived)/n()*100))
 #######################################
 ## Paid fair and survival
 ## What was the fare range paid by the passangers?
@@ -198,7 +203,7 @@ titanic %>%
 ##  (must be titles), and with them we will create a new column. Then we will procede as 
 ##  we did in the other analyses.
 ############################################
-
+summary(titanic$Name)
 words = paste(titanic$Name, collapse=" ")
 class(words)
 print(words)
@@ -234,7 +239,7 @@ wordcnt %>% arrange(desc(Freq)) %>% top_n(15)
 titanic$Title <- "Other"
 
 titanic[grep("Miss", titanic$Name,fixed = T),"Title"] <- "Miss"
-titanic[grep("Mr", titanic$Name,fixed = T),"Title"] <- "Mr"
+titanic$Title[grep("Mr", titanic$Name,fixed = T)] <- "Mr"
 titanic[grep("Mrs", titanic$Name,fixed = T),"Title"] <- "Mrs"
 titanic[grep("Master", titanic$Name,fixed = T),"Title"] <- "Master"
 

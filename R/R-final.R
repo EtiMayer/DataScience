@@ -115,6 +115,10 @@ Q8 %>% group_by(FirstName,LastName) %>%
 ##     the teacher in each course, and the number of students enrolled in the course 
 ##     (for each course, department and teacher show the names).
 ##############
+Q9 <- Reduce(function(classrooms,courses) merge(classrooms,courses, all=TRUE), list(classrooms,courses,teachers,departments))
+
+Q9 %>% group_by(CourseId,CourseName,DepartmentName,FirstName,LastName) %>%
+       summarise(StudentCnt = n_distinct(StudentId))
 
 
 ##############
@@ -122,5 +126,13 @@ Q8 %>% group_by(FirstName,LastName) %>%
 ##      the average of the grades per class, and their overall average (for each student 
 ##      show the student name).
 ##############
+Q10 <- Reduce(function(students,classrooms) merge(students,classrooms, all=TRUE), list(students,classrooms,courses))
 
 
+Overall_Average <- Q10 %>% group_by(StudentId,FirstName,LastName) %>%
+                           summarise(CoursesTaken = n_distinct(CourseId),Mean= mean(degree))
+
+Courses_Average <- Q10 %>% group_by(StudentId) %>%
+                           mutate(Deparatment_Name = ifelse(DepartmentId == 1, "English",
+                                                     ifelse(DepartmentId == 2, "Science",
+                                                     ifelse(DepartmentId == 3 , "Art", "Sport"))))

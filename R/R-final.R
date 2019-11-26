@@ -25,7 +25,8 @@ library(dplyr)
 ## Q1. Count the number of students on each department¶
 ##############
 
-Q1 <- Reduce(function(classrooms,courses) merge(classrooms,courses, all=TRUE), list(classrooms,courses,departments))
+Q1 <- inner_join(classrooms, courses, by = "CourseId") %>%
+      inner_join(departments, by = "DepartmentId")
 
 Q1 %>%  group_by(DepartmentName)  %>% summarise(StudentCnt=n_distinct(StudentId))
 
@@ -69,12 +70,20 @@ students %>% group_by(Gender) %>% summarise(count=n())
 ##############
 ## Q5. For which courses the percentage of male/female students is over 70%?
 ##############
-Q5 <- Reduce(function(classrooms,courses) merge(classrooms,courses, all=TRUE), list(classrooms,courses,students))
 
-over_70per <- Q5 %>% count(CourseName,Gender) %>% mutate(percent=(count(Gender)/sum(n)*100))
+Q5 <- left_join(classrooms, students, by = "StudentId") %>% 
+      left_join(courses, by = "CourseId")
 
-over_70per %>% filter(percent <0.7)
+over_70_course <- Q5 %>% count(CourseName,Gender)
+gender_course <- Q5 %>% count(CourseName)
 
+res <-left_join(over_70_course,gender_course, by = "CourseName")  
+colnames(res)<- c("CourseName","Gender","StudentCnt","Total")
+
+res %>% group_by(CourseName,Gender) %>%
+        summarise(percent = (StudentCnt/Total)*100) %>%
+        filter(percent>70) %>%
+        na.omit()
 
 ##############
 ## Q6. For each department, how many students passed with a grades over 80?
@@ -105,7 +114,10 @@ Under60_pct
 ##############
 ## Q8. Rate the teachers by their average student's grades (in descending order).
 ##############
-Q8 <- Reduce(function(classrooms,courses) merge(classrooms,courses, all=TRUE), list(classrooms,courses,teachers))
+
+Q8 <- inner_join(classrooms,courses, by = "CourseId") %>%
+      inner_join(teachers, by = "TeacherId")
+
 Q8 %>% group_by(FirstName,LastName) %>%
   summarise(Mean= mean(degree)) %>%
   arrange(desc(Mean))
@@ -115,7 +127,10 @@ Q8 %>% group_by(FirstName,LastName) %>%
 ##     the teacher in each course, and the number of students enrolled in the course 
 ##     (for each course, department and teacher show the names).
 ##############
-Q9 <- Reduce(function(classrooms,courses) merge(classrooms,courses, all=TRUE), list(classrooms,courses,teachers,departments))
+
+Q9 <- left_join(courses,departments, by = "DepartmentId") %>%
+      left_join(classrooms, by = "CourseId") %>%
+      left_join(teachers, by = "TeacherId")
 
 Q9 %>% group_by(CourseId,CourseName,DepartmentName,FirstName,LastName) %>%
        summarise(StudentCnt = n_distinct(StudentId))
@@ -126,13 +141,34 @@ Q9 %>% group_by(CourseId,CourseName,DepartmentName,FirstName,LastName) %>%
 ##      the average of the grades per class, and their overall average (for each student 
 ##      show the student name).
 ##############
-Q10 <- Reduce(function(students,classrooms) merge(students,classrooms, all=TRUE), list(students,classrooms,courses))
 
+Q10 <- left_join(students, classrooms, by = "StudentId") %>%
+       left_join(courses, by = "CourseId")
 
 Overall_Average <- Q10 %>% group_by(StudentId,FirstName,LastName) %>%
                            summarise(CoursesTaken = n_distinct(CourseId),Mean= mean(degree))
 
-Courses_Average <- Q10 %>% group_by(StudentId) %>%
-                           mutate(Deparatment_Name = ifelse(DepartmentId == 1, "English",
-                                                     ifelse(DepartmentId == 2, "Science",
-                                                     ifelse(DepartmentId == 3 , "Art", "Sport"))))
+English <- Q10 %>% filter(DepartmentId == 1) %>%
+                   group_by(StudentId) %>%
+                   summarise(EnglishDegree = mean(degree))
+
+Science <- Q10 %>% filter(DepartmentId == 2) %>%
+                   group_by(StudentId) %>%
+                   summarise(ScienceDegree = mean(degree))
+
+Art <- Q10 %>% filter(DepartmentId == 3) %>%
+                   group_by(StudentId) %>%
+                   summarise(ArtDegree = mean(degree))
+
+Sport <- Q10 %>% filter(DepartmentId == 4) %>%
+                 group_by(StudentId) %>%
+                 summarise(SportDegree = mean(degree))
+
+Degree_Table <- left_join(Overall_Average, English, by = "StudentId") %>%
+                left_join(Science, by = "StudentId") %>%
+                left_join(Art, by = "StudentId") %>%
+                left_join(Sport, by = "StudentId")
+
+Degree_Table
+
+

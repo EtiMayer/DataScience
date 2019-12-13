@@ -89,7 +89,7 @@ res %>% group_by(CourseName,Gender) %>%
 ## Q6. For each department, how many students passed with a grades over 80?
 ##############
 
-Student80 <- Q1 %>% filter(between(degree,80,100)) %>%
+Student80 <- Q1 %>% filter(degree>80) %>%
                    group_by(DepartmentName) %>%
                    summarise(StudentCnt=n_distinct(StudentId))
 
@@ -103,7 +103,7 @@ Above80_pct
 ##############
 ## Q7. For each department, how many students passed with a grades under 60?
 ##############
-Student60 <- Q1 %>% filter(between(degree,0,60)) %>%
+Student60 <- Q1 %>% filter(degree<60) %>%
   group_by(DepartmentName) %>%
   summarise(StudentCnt=n_distinct(StudentId))
 

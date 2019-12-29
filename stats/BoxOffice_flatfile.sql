@@ -124,7 +124,6 @@ SELECT a.movie_id
       , (CASE WHEN (homepage <> '') THEN (1) ELSE (0) END) AS sw_web_presence
       , (CASE WHEN (poster_path <> '') THEN (1) ELSE (0) END) AS sw_has_poster
       , (CASE WHEN (tagline <> '') THEN (1) ELSE (0) END) AS sw_tagline
-      , (SELECT COUNT(1) FROM movie_keywords WHERE movie_id= a.movie_id) AS keyword_cnt
       , CASE WHEN (YEAR(a.release_date) > 2017) THEN (YEAR(a.release_date)-100) ELSE (YEAR(a.release_date)) END AS release_year
       , MONTH(a.release_date) AS release_month
       , CASE WHEN (MONTH(a.release_date) IN (8,9,10,12)) THEN (1) ELSE (0) END AS high_release_month
@@ -334,12 +333,15 @@ SELECT a.movie_id
 
 /***************************/
 
-
+drop view movies_ff_v
 SELECT * FROM dbo.movies_ff_v
 
 
 SELECT MAX(actor1_prev_revenue)
 FROM dbo.movies_ff_v
 WHERE actor1_prev_revenue >1000000
+
+SELECT max(actor0_prev_revenue)
+FROM dbo.movies_ff_v
 
 exec sp_columns movies_ff_v

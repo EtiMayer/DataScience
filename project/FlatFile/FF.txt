@@ -1,0 +1,41 @@
+CREATE TEMPORARY TABLE indicator_iterator (IndicatorCode TEXT, status INT);
+INSERT INTO indicator_iterator 
+SELECT DISTINCT IndicatorCode, 0 AS status
+FROM EnergyIndicators1;
+
+SELECT 
+	CountryName,
+	Countrycode,
+	`Year`,
+	MAX(CASE WHEN (IndicatorCode = '') THEN (Value) ELSE (0) END) AS ind0001
+FROM EnergyIndicatorsFT
+GROUP BY CountryName,
+	Countrycode,
+	`Year`
+
+#################################################################
+
+CREATE TEMPORARY TABLE indicator_iterator (IndicatorCode TEXT, status INT);
+INSERT INTO indicator_iterator 
+SELECT DISTINCT IndicatorCode, 0 AS status
+FROM EnergyIndicators1;
+
+DECLARE @ind AS VARCHAR(MAX);
+DECLARE @x AS INT;
+
+--- 
+
+SET @ind = SELECT TOP 1 IndicatorCode FROM indicator_iterator WHERE status = 0;
+
+
+SELECT 
+	CountryName,
+	Countrycode,
+	`Year`,
+	MAX(CASE WHEN (IndicatorCode = @ind) THEN (Value) ELSE (0) END) AS ind0001
+FROM EnergyIndicatorsFT
+GROUP BY CountryName,
+	Countrycode,
+	`Year`
+	
+UPDATE indicator_iterator SET status = 9 WHERE IndicatorCode = @ind;

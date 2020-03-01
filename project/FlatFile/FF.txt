@@ -39,3 +39,50 @@ GROUP BY CountryName,
 	`Year`
 	
 UPDATE indicator_iterator SET status = 9 WHERE IndicatorCode = @ind;
+
+
+
+adding indicators
+
+
+-----Adding Population Total indicator
+INSERT INTO EnergyIndicatorsFT
+SELECT 
+	CountryName,
+	CountryCode,
+	IndicatorName,
+	IndicatorCode,
+	`Year`,
+	`Value`
+FROM
+	Indicators
+WHERE 
+	IndicatorCode = "SP_POP_TOTL"
+
+	-----Adding Population Density indicator	
+INSERT INTO EnergyIndicatorsFT
+SELECT 
+	CountryName,
+	CountryCode,
+	IndicatorName,
+	IndicatorCode,
+	`Year`,
+	`Value`
+FROM
+	Indicators
+WHERE 
+	IndicatorCode = "EN_POP_DNST"
+
+	-----Adding GDP indicator	
+INSERT INTO EnergyIndicatorsFT
+SELECT 
+	CountryName,
+	CountryCode,
+	IndicatorName,
+	IndicatorCode,
+	`Year`,
+	`Value`
+FROM
+	Indicators
+WHERE 
+	IndicatorCode = "NY_GDP_MKTP_CD"

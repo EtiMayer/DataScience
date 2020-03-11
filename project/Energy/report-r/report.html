@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+      <html>
+      <head>
+      <title>Data Visualization</title>
+      <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+      <link rel='stylesheet' href='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'>
+
+      <script src='http://code.jquery.com/jquery-1.10.2.js'></script>
+      <script>
+      $(document).ready(function(){
+      $('.onetoone').hide();
+      });
+
+      $(function() {
+      $('.origimg').click(function(e) {
+      $('#popup_img').attr('src',$(this).attr('src'));
+      $('#myContainer').hide();
+      var pos = $(document).scrollTop();
+      $('#myContainer').css({'top':pos+20,'left':250, 'position':'absolute', 'border':'1px solid black', 'padding':'0px'});
+      $('#myContainer').show();
+      });
+      $('#myContainer').click(function(e) {
+      $('#myContainer').hide();
+      });
+
+      $('#myform2').submit(function(e) {
+      e.preventDefault();
+      });
+
+      $('#onetoone').on('click',function() {
+      console.log('onetone button - 1');
+      $('#onetoone').hide();
+      $('#aslist').show();
+      // To show only individual rows:
+      $('.Row').hide();
+      $('.onetoone').show();
+      // then we iterate
+      var i = $('.Row').length;
+      // Then we iterate
+      var nxt = $('#idx').val();
+      if (nxt < i & nxt >0) {
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(1)
+      }
+      console.log('onetone button - 2');
+      });
+
+      $('#aslist').on('click',function() {
+      console.log('aslist button - 1');
+      $('#onetoone').show();
+      $('#aslist').hide();
+      $('.onetoone').hide();
+      $('.Row').show();
+      console.log('aslist button - 2');
+      });
+
+      $('#less').on('click',function(){
+      console.log('less button - 1');
+      var i = $('.Row').length;
+      var nxt = parseInt($('#idx').val(),10) - 1;
+      if (nxt < i & nxt >0) {
+      $('#idx').val(nxt)
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(1)
+      }
+      console.log('less button - 2');
+      });
+
+      $('#more').on('click',function(){
+      console.log('more button - 1');
+      var i = $('.Row').length;
+      var nxt = parseInt($('#idx').val(),10) + 1;
+      if (nxt < i & nxt >0) {
+      $('#idx').val(nxt)
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(i)
+      }
+      console.log('more button - 2');
+      });
+
+      $('#idx').on('change', function(){
+      console.log('idx changed - 1');
+      var i = $('.Row').length;
+      var nxt = $('#idx').val();
+      if (nxt < i & nxt >0) {
+      $('#idx').val(nxt)
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(i)
+      }
+      console.log('idx changed - 2');
+      });
+      });
+
+      </script>
+
+      <style type='text/css'>
+      .Table
+      {
+      display: table;
+      }
+      .Title
+      {
+      display: table-caption;
+      text-align: center;
+      font-weight: bold;
+      font-size: larger;
+      background-color:#4C6F50;
+      color: #fff;
+      }
+      .Row
+      {
+      display: table-row;
+      }
+      .Row:nth-child(even) {
+        background-color: #56882433;
+      }
+      .Cell
+      {
+      display: table-cell;
+      border: solid;
+      border-width: thin;
+      padding-left: 5px;
+      padding-right: 5px;
+      vertical-align: top;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      }
+      </style>
+
+      </head>
+
+      <body>
+      <div id='pageone' data-role='main' class='ui-content'>
+      
+<p><p><h1> Data Visualization & Exploration </h1>
+                <form>
+                <input type='button' id='onetoone' value='Show as Cards'>
+                <input type='button' id='aslist' class='onetoone' value='Show as List'>
+                </form>
+                <p>
+                
+<p><p>
+                <div class='Table'>
+                <div class='Row'>
+                <div class='Cell Title'> Variable </div>
+                <div class='Cell Title'> Distribution </div>
+                <div class='Cell Title'> Descriptive <br> Statistics</div>
+                <div class='Cell Title'> Outliers </div> <div class='Cell Title'> Dependent <br> Variable <br> Distribution </div> </div>
+<div class='Row'><div class='Cell'><b> CountryName </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/CountryName_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  13778 / 13778  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  247 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/CountryName_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CountryCode </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/CountryCode_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  13778 / 13778  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  247 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/CountryCode_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Year </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/Year_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  13778 / 13778  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  1987 	 <u>StdDev</u>:  16.12 <br><u>Median</u>:  1988 	 <u>IQR</u>:  1974 - 2001 <br><u>Min</u>:  1960 	 <u>Max</u>:  2015 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/Year_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/Year_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SP_POP_TOTL </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/SP_POP_TOTL_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  13484 / 13778  ( 97.87 %) <br> <u>Missing</u>:  294  ( 2.134 %)<p> <u>Mean</u>:  1.425e+08 	 <u>StdDev</u>:  5.508e+08 <br><u>Median</u>:  5.446e+06 	 <u>IQR</u>:  8.274e+05 - 2.755e+07 <br><u>Min</u>:  4279 	 <u>Max</u>:  7.261e+09 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/SP_POP_TOTL_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  2290  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/SP_POP_TOTL_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_CO2_OTHX_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_OTHX_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  7005 / 13778  ( 50.84 %) <br> <u>Missing</u>:  6773  ( 49.16 %)<p> <u>Mean</u>:  4.862 	 <u>StdDev</u>:  8.094 <br><u>Median</u>:  2.783 	 <u>IQR</u>:  1.136 - 5.271 <br><u>Min</u>:  -2.381 	 <u>Max</u>:  87.23 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_OTHX_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  582  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_OTHX_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_USE_COMM_GD_PP_KD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_COMM_GD_PP_KD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  3720 / 13778  ( 27 %) <br> <u>Missing</u>:  10058  ( 73 %)<p> <u>Mean</u>:  166.1 	 <u>StdDev</u>:  120.7 <br><u>Median</u>:  130.6 	 <u>IQR</u>:  96.76 - 188.8 <br><u>Min</u>:  4.991 	 <u>Max</u>:  1197 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_COMM_GD_PP_KD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  280  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_COMM_GD_PP_KD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_USE_COMM_FO_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_COMM_FO_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  7044 / 13778  ( 51.12 %) <br> <u>Missing</u>:  6734  ( 48.88 %)<p> <u>Mean</u>:  67.56 	 <u>StdDev</u>:  29.47 <br><u>Median</u>:  77.71 	 <u>IQR</u>:  46.32 - 92.57 <br><u>Min</u>:  0 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_COMM_FO_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_COMM_FO_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ER_H2O_INTR_K3 </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/ER_H2O_INTR_K3_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  2323 / 13778  ( 16.86 %) <br> <u>Missing</u>:  11455  ( 83.14 %)<p> <u>Mean</u>:  1419 	 <u>StdDev</u>:  4548 <br><u>Median</u>:  60 	 <u>IQR</u>:  9.5 - 335.4 <br><u>Min</u>:  0 	 <u>Max</u>:  4.35e+04 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/ER_H2O_INTR_K3_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  98  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/ER_H2O_INTR_K3_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_NSF_ACCS_UR_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_NSF_ACCS_UR_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  448 / 13778  ( 3.252 %) <br> <u>Missing</u>:  13330  ( 96.75 %)<p> <u>Mean</u>:  77.43 	 <u>StdDev</u>:  32.54 <br><u>Median</u>:  95.42 	 <u>IQR</u>:  67.84 - 100 <br><u>Min</u>:  1.995 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_NSF_ACCS_UR_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  46  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_NSF_ACCS_UR_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_NSF_ACCS_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_NSF_ACCS_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  896 / 13778  ( 6.503 %) <br> <u>Missing</u>:  12882  ( 93.5 %)<p> <u>Mean</u>:  62.1 	 <u>StdDev</u>:  36.37 <br><u>Median</u>:  74.27 	 <u>IQR</u>:  27.45 - 98.54 <br><u>Min</u>:  2 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_NSF_ACCS_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_NSF_ACCS_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_NUCL_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_NUCL_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  6761 / 13778  ( 49.07 %) <br> <u>Missing</u>:  7017  ( 50.93 %)<p> <u>Mean</u>:  5.011 	 <u>StdDev</u>:  12.27 <br><u>Median</u>:  0 	 <u>IQR</u>:  0 - 1.766 <br><u>Min</u>:  0 	 <u>Max</u>:  87.99 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_NUCL_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  1290  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_NUCL_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_ACCS_RU_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_ACCS_RU_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  980 / 13778  ( 7.113 %) <br> <u>Missing</u>:  12798  ( 92.89 %)<p> <u>Mean</u>:  65.58 	 <u>StdDev</u>:  36.94 <br><u>Median</u>:  82.19 	 <u>IQR</u>:  30.8 - 100 <br><u>Min</u>:  0.1 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_ACCS_RU_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_ACCS_RU_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_GHGO_KT_CE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_GHGO_KT_CE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  772 / 13778  ( 5.603 %) <br> <u>Missing</u>:  13006  ( 94.4 %)<p> <u>Mean</u>:  2.617e+04 	 <u>StdDev</u>:  9.808e+04 <br><u>Median</u>:  413.6 	 <u>IQR</u>:  0 - 3604 <br><u>Min</u>:  0 	 <u>Max</u>:  1.015e+06 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_GHGO_KT_CE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  146  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_GHGO_KT_CE_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_NSF_ACCS_RU_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_NSF_ACCS_RU_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  448 / 13778  ( 3.252 %) <br> <u>Missing</u>:  13330  ( 96.75 %)<p> <u>Mean</u>:  56.44 	 <u>StdDev</u>:  40.69 <br><u>Median</u>:  64.73 	 <u>IQR</u>:  12.55 - 99.99 <br><u>Min</u>:  2 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_NSF_ACCS_RU_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_NSF_ACCS_RU_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_IMP_CONS_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_IMP_CONS_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  7035 / 13778  ( 51.06 %) <br> <u>Missing</u>:  6743  ( 48.94 %)<p> <u>Mean</u>:  -74.51 	 <u>StdDev</u>:  484.9 <br><u>Median</u>:  16.13 	 <u>IQR</u>:  -36.37 - 51.14 <br><u>Min</u>:  -1.672e+04 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_IMP_CONS_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  870  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_IMP_CONS_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_CO2E_GF_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_GF_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  10741 / 13778  ( 77.96 %) <br> <u>Missing</u>:  3037  ( 22.04 %)<p> <u>Mean</u>:  9.689 	 <u>StdDev</u>:  16.24 <br><u>Median</u>:  0.3436 	 <u>IQR</u>:  0 - 14.19 <br><u>Min</u>:  0 	 <u>Max</u>:  132.2 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_GF_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  907  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_GF_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_CO2E_PP_GD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_PP_GD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  4573 / 13778  ( 33.19 %) <br> <u>Missing</u>:  9205  ( 66.81 %)<p> <u>Mean</u>:  0.3889 	 <u>StdDev</u>:  0.331 <br><u>Median</u>:  0.3016 	 <u>IQR</u>:  0.1918 - 0.4799 <br><u>Min</u>:  0.004909 	 <u>Max</u>:  3.196 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_PP_GD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  256  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_PP_GD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_CO2E_KT </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_KT_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  10602 / 13778  ( 76.95 %) <br> <u>Missing</u>:  3176  ( 23.05 %)<p> <u>Mean</u>:  5.938e+05 	 <u>StdDev</u>:  2.333e+06 <br><u>Median</u>:  8317 	 <u>IQR</u>:  876.4 - 8.819e+04 <br><u>Min</u>:  3.667 	 <u>Max</u>:  3.465e+07 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_KT_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  1910  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_KT_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_NOXE_AG_KT_CE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_AG_KT_CE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  672 / 13778  ( 4.877 %) <br> <u>Missing</u>:  13106  ( 95.12 %)<p> <u>Mean</u>:  1.373e+04 	 <u>StdDev</u>:  3.783e+04 <br><u>Median</u>:  3340 	 <u>IQR</u>:  1207 - 1.105e+04 <br><u>Min</u>:  0 	 <u>Max</u>:  4.151e+05 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_AG_KT_CE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  68  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_AG_KT_CE_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_FOSL_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_FOSL_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  6761 / 13778  ( 49.07 %) <br> <u>Missing</u>:  7017  ( 50.93 %)<p> <u>Mean</u>:  59.04 	 <u>StdDev</u>:  32.02 <br><u>Median</u>:  64.97 	 <u>IQR</u>:  32.36 - 87.7 <br><u>Min</u>:  0 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_FOSL_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_FOSL_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_RNEW_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_RNEW_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  5075 / 13778  ( 36.83 %) <br> <u>Missing</u>:  8703  ( 63.17 %)<p> <u>Mean</u>:  30.67 	 <u>StdDev</u>:  32.42 <br><u>Median</u>:  17.7 	 <u>IQR</u>:  2.077 - 54.88 <br><u>Min</u>:  0 	 <u>Max</u>:  103.5 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_RNEW_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_RNEW_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_METH_AG_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_AG_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  830 / 13778  ( 6.024 %) <br> <u>Missing</u>:  12948  ( 93.98 %)<p> <u>Mean</u>:  44.53 	 <u>StdDev</u>:  22.55 <br><u>Median</u>:  44.48 	 <u>IQR</u>:  28.53 - 62.55 <br><u>Min</u>:  0 	 <u>Max</u>:  95.06 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_AG_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_AG_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> TX_VAL_FUEL_ZS_UN </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/TX_VAL_FUEL_ZS_UN_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  7079 / 13778  ( 51.38 %) <br> <u>Missing</u>:  6699  ( 48.62 %)<p> <u>Mean</u>:  16.42 	 <u>StdDev</u>:  30.5 <br><u>Median</u>:  3.769 	 <u>IQR</u>:  0.4865 - 15.24 <br><u>Min</u>:  0 	 <u>Max</u>:  722.8 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/TX_VAL_FUEL_ZS_UN_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  1072  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/TX_VAL_FUEL_ZS_UN_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_CO2E_LF_KT </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_LF_KT_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  10583 / 13778  ( 76.81 %) <br> <u>Missing</u>:  3195  ( 23.19 %)<p> <u>Mean</u>:  2.354e+05 	 <u>StdDev</u>:  9.358e+05 <br><u>Median</u>:  4576 	 <u>IQR</u>:  672.9 - 3.893e+04 <br><u>Min</u>:  0 	 <u>Max</u>:  1.15e+07 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_LF_KT_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  1799  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_LF_KT_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NY_ADJ_DNGY_GN_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_DNGY_GN_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  8627 / 13778  ( 62.61 %) <br> <u>Missing</u>:  5151  ( 37.39 %)<p> <u>Mean</u>:  3.557 	 <u>StdDev</u>:  8.543 <br><u>Median</u>:  0.08506 	 <u>IQR</u>:  0 - 2.411 <br><u>Min</u>:  0 	 <u>Max</u>:  87.49 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_DNGY_GN_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  1371  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_DNGY_GN_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> IC_ELC_TIME </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/IC_ELC_TIME_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  1487 / 13778  ( 10.79 %) <br> <u>Missing</u>:  12291  ( 89.21 %)<p> <u>Mean</u>:  105.1 	 <u>StdDev</u>:  71.43 <br><u>Median</u>:  90 	 <u>IQR</u>:  64 - 125.8 <br><u>Min</u>:  18 	 <u>Max</u>:  585 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/IC_ELC_TIME_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  19  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/IC_ELC_TIME_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_METH_KT_CE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_KT_CE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  832 / 13778  ( 6.039 %) <br> <u>Missing</u>:  12946  ( 93.96 %)<p> <u>Mean</u>:  2.825e+05 	 <u>StdDev</u>:  8.305e+05 <br><u>Median</u>:  1.882e+04 	 <u>IQR</u>:  6344 - 9.833e+04 <br><u>Min</u>:  0 	 <u>Max</u>:  7.515e+06 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_KT_CE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  157  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_KT_CE_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_METH_EG_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_EG_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  830 / 13778  ( 6.024 %) <br> <u>Missing</u>:  12948  ( 93.98 %)<p> <u>Mean</u>:  32.31 	 <u>StdDev</u>:  23.91 <br><u>Median</u>:  25.31 	 <u>IQR</u>:  12.91 - 47.04 <br><u>Min</u>:  0.2549 	 <u>Max</u>:  98.19 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_EG_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_EG_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_CO2E_GF_KT </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_GF_KT_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  10004 / 13778  ( 72.61 %) <br> <u>Missing</u>:  3774  ( 27.39 %)<p> <u>Mean</u>:  1.264e+05 	 <u>StdDev</u>:  6.945e+05 <br><u>Median</u>:  0 	 <u>IQR</u>:  0 - 1.024e+04 <br><u>Min</u>:  0 	 <u>Max</u>:  1.466e+07 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_GF_KT_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  1838  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_GF_KT_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_CO2_MANF_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_MANF_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  7005 / 13778  ( 50.84 %) <br> <u>Missing</u>:  6773  ( 49.16 %)<p> <u>Mean</u>:  23.24 	 <u>StdDev</u>:  11.64 <br><u>Median</u>:  22.1 	 <u>IQR</u>:  15.46 - 29.2 <br><u>Min</u>:  0 	 <u>Max</u>:  83.33 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_MANF_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  204  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_MANF_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ER_H2O_INTR_PC </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/ER_H2O_INTR_PC_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  2322 / 13778  ( 16.85 %) <br> <u>Missing</u>:  11456  ( 83.15 %)<p> <u>Mean</u>:  3.376e+04 	 <u>StdDev</u>:  3.192e+05 <br><u>Median</u>:  4392 	 <u>IQR</u>:  1459 - 1.914e+04 <br><u>Min</u>:  0 	 <u>Max</u>:  1.066e+07 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/ER_H2O_INTR_PC_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  303  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/ER_H2O_INTR_PC_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NY_ADJ_SVNX_CD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_SVNX_CD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  4736 / 13778  ( 34.37 %) <br> <u>Missing</u>:  9042  ( 65.63 %)<p> <u>Mean</u>:  2.567e+10 	 <u>StdDev</u>:  1.085e+11 <br><u>Median</u>:  1.016e+09 	 <u>IQR</u>:  4.029e+07 - 9.434e+09 <br><u>Min</u>:  -2.751e+10 	 <u>Max</u>:  2.773e+12 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_SVNX_CD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  800  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_SVNX_CD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_PFCG_KT_CE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_PFCG_KT_CE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  723 / 13778  ( 5.247 %) <br> <u>Missing</u>:  13055  ( 94.75 %)<p> <u>Mean</u>:  2836 	 <u>StdDev</u>:  1.118e+04 <br><u>Median</u>:  0.1 	 <u>IQR</u>:  0 - 401.6 <br><u>Min</u>:  0 	 <u>Max</u>:  1.154e+05 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_PFCG_KT_CE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  120  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_PFCG_KT_CE_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> TM_VAL_FUEL_ZS_UN </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/TM_VAL_FUEL_ZS_UN_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  7525 / 13778  ( 54.62 %) <br> <u>Missing</u>:  6253  ( 45.38 %)<p> <u>Mean</u>:  12.97 	 <u>StdDev</u>:  9.177 <br><u>Median</u>:  11.25 	 <u>IQR</u>:  6.654 - 17.43 <br><u>Min</u>:  0.002742 	 <u>Max</u>:  94.06 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/TM_VAL_FUEL_ZS_UN_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  217  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/TM_VAL_FUEL_ZS_UN_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_FEC_RNEW_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_FEC_RNEW_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  4867 / 13778  ( 35.32 %) <br> <u>Missing</u>:  8911  ( 64.68 %)<p> <u>Mean</u>:  34.47 	 <u>StdDev</u>:  31.49 <br><u>Median</u>:  24.28 	 <u>IQR</u>:  6.819 - 60.12 <br><u>Min</u>:  0.001764 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_FEC_RNEW_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_FEC_RNEW_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_LOSS_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_LOSS_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  6972 / 13778  ( 50.6 %) <br> <u>Missing</u>:  6806  ( 49.4 %)<p> <u>Mean</u>:  12.33 	 <u>StdDev</u>:  8.725 <br><u>Median</u>:  10.24 	 <u>IQR</u>:  7.207 - 15.14 <br><u>Min</u>:  0 	 <u>Max</u>:  157.2 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_LOSS_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  327  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_LOSS_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_CO2E_EG_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_EG_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  6768 / 13778  ( 49.12 %) <br> <u>Missing</u>:  7010  ( 50.88 %)<p> <u>Mean</u>:  2.39 	 <u>StdDev</u>:  2.117 <br><u>Median</u>:  2.433 	 <u>IQR</u>:  1.678 - 2.925 <br><u>Min</u>:  0.05414 	 <u>Max</u>:  77.59 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_EG_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  134  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_EG_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_USE_PCAP_KG_OE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_PCAP_KG_OE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  6849 / 13778  ( 49.71 %) <br> <u>Missing</u>:  6929  ( 50.29 %)<p> <u>Mean</u>:  2199 	 <u>StdDev</u>:  2505 <br><u>Median</u>:  1189 	 <u>IQR</u>:  548.4 - 3109 <br><u>Min</u>:  9.715 	 <u>Max</u>:  2.276e+04 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_PCAP_KG_OE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  406  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_PCAP_KG_OE_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_METH_AG_KT_CE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_AG_KT_CE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  672 / 13778  ( 4.877 %) <br> <u>Missing</u>:  13106  ( 95.12 %)<p> <u>Mean</u>:  2.288e+04 	 <u>StdDev</u>:  6.396e+04 <br><u>Median</u>:  4653 	 <u>IQR</u>:  1835 - 1.771e+04 <br><u>Min</u>:  0 	 <u>Max</u>:  5.899e+05 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_AG_KT_CE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  78  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_AG_KT_CE_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_CO2E_PC </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_PC_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  10599 / 13778  ( 76.93 %) <br> <u>Missing</u>:  3179  ( 23.07 %)<p> <u>Mean</u>:  4.315 	 <u>StdDev</u>:  7.186 <br><u>Median</u>:  1.59 	 <u>IQR</u>:  0.413 - 6.007 <br><u>Min</u>:  0.0005803 	 <u>Max</u>:  99.84 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_PC_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  572  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_PC_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_NOXE_AG_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_AG_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  830 / 13778  ( 6.024 %) <br> <u>Missing</u>:  12948  ( 93.98 %)<p> <u>Mean</u>:  65.05 	 <u>StdDev</u>:  18.23 <br><u>Median</u>:  67.62 	 <u>IQR</u>:  56.46 - 77.53 <br><u>Min</u>:  0 	 <u>Max</u>:  96.91 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_AG_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  29  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_AG_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_CO2E_LF_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_LF_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  10740 / 13778  ( 77.95 %) <br> <u>Missing</u>:  3038  ( 22.05 %)<p> <u>Mean</u>:  67.84 	 <u>StdDev</u>:  28.73 <br><u>Median</u>:  72.65 	 <u>IQR</u>:  44.1 - 95.78 <br><u>Min</u>:  0 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_LF_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_LF_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_HYRO_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_HYRO_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  6761 / 13778  ( 49.07 %) <br> <u>Missing</u>:  7017  ( 50.93 %)<p> <u>Mean</u>:  31.69 	 <u>StdDev</u>:  31.58 <br><u>Median</u>:  19.13 	 <u>IQR</u>:  4.562 - 56.52 <br><u>Min</u>:  0 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_HYRO_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_HYRO_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_RNWX_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_RNWX_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  6761 / 13778  ( 49.07 %) <br> <u>Missing</u>:  7017  ( 50.93 %)<p> <u>Mean</u>:  1.79 	 <u>StdDev</u>:  4.567 <br><u>Median</u>:  0.08287 	 <u>IQR</u>:  0 - 1.293 <br><u>Min</u>:  0 	 <u>Max</u>:  62.6 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_RNWX_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  905  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_RNWX_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_CO2_ETOT_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_ETOT_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  7005 / 13778  ( 50.84 %) <br> <u>Missing</u>:  6773  ( 49.16 %)<p> <u>Mean</u>:  33.83 	 <u>StdDev</u>:  16.96 <br><u>Median</u>:  33.84 	 <u>IQR</u>:  22.89 - 44.49 <br><u>Min</u>:  0 	 <u>Max</u>:  88.89 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_ETOT_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  79  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_ETOT_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_HFCG_KT_CE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_HFCG_KT_CE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  728 / 13778  ( 5.284 %) <br> <u>Missing</u>:  13050  ( 94.72 %)<p> <u>Mean</u>:  1.029e+04 	 <u>StdDev</u>:  4.489e+04 <br><u>Median</u>:  47.55 	 <u>IQR</u>:  0 - 1192 <br><u>Min</u>:  0 	 <u>Max</u>:  5.634e+05 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_HFCG_KT_CE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  123  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_HFCG_KT_CE_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NY_ADJ_DPEM_GN_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_DPEM_GN_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  572 / 13778  ( 4.152 %) <br> <u>Missing</u>:  13206  ( 95.85 %)<p> <u>Mean</u>:  1.287 	 <u>StdDev</u>:  1.742 <br><u>Median</u>:  0.613 	 <u>IQR</u>:  0.2468 - 1.56 <br><u>Min</u>:  0.01567 	 <u>Max</u>:  16 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_DPEM_GN_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  53  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_DPEM_GN_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_COAL_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_COAL_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  6761 / 13778  ( 49.07 %) <br> <u>Missing</u>:  7017  ( 50.93 %)<p> <u>Mean</u>:  19.59 	 <u>StdDev</u>:  26.36 <br><u>Median</u>:  3.119 	 <u>IQR</u>:  0 - 35.91 <br><u>Min</u>:  0 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_COAL_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  176  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_COAL_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EP_PMP_DESL_CD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EP_PMP_DESL_CD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  1959 / 13778  ( 14.22 %) <br> <u>Missing</u>:  11819  ( 85.78 %)<p> <u>Mean</u>:  0.7922 	 <u>StdDev</u>:  0.4729 <br><u>Median</u>:  0.73 	 <u>IQR</u>:  0.4 - 1.11 <br><u>Min</u>:  0.008 	 <u>Max</u>:  3 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EP_PMP_DESL_CD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> 3, 2.18, 2.35, 2.33, 2.27</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EP_PMP_DESL_CD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_GDP_PUSE_KO_PP_KD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_GDP_PUSE_KO_PP_KD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  3720 / 13778  ( 27 %) <br> <u>Missing</u>:  10058  ( 73 %)<p> <u>Mean</u>:  8.222 	 <u>StdDev</u>:  6.32 <br><u>Median</u>:  7.66 	 <u>IQR</u>:  5.297 - 10.34 <br><u>Min</u>:  0.8351 	 <u>Max</u>:  200.4 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_GDP_PUSE_KO_PP_KD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  68  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_GDP_PUSE_KO_PP_KD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_ACCS_UR_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_ACCS_UR_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  980 / 13778  ( 7.113 %) <br> <u>Missing</u>:  12798  ( 92.89 %)<p> <u>Mean</u>:  86.44 	 <u>StdDev</u>:  21.69 <br><u>Median</u>:  98.57 	 <u>IQR</u>:  81.14 - 100 <br><u>Min</u>:  0.1 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_ACCS_UR_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  92  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_ACCS_UR_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_EGY_PRIM_PP_KD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_EGY_PRIM_PP_KD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  5055 / 13778  ( 36.69 %) <br> <u>Missing</u>:  8723  ( 63.31 %)<p> <u>Mean</u>:  7.957 	 <u>StdDev</u>:  8.707 <br><u>Median</u>:  5.846 	 <u>IQR</u>:  4.238 - 8.717 <br><u>Min</u>:  0.4757 	 <u>Max</u>:  127.4 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_EGY_PRIM_PP_KD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  374  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_EGY_PRIM_PP_KD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_METH_EG_KT_CE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_EG_KT_CE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  832 / 13778  ( 6.039 %) <br> <u>Missing</u>:  12946  ( 93.96 %)<p> <u>Mean</u>:  9.842e+04 	 <u>StdDev</u>:  2.981e+05 <br><u>Median</u>:  5389 	 <u>IQR</u>:  1217 - 3.659e+04 <br><u>Min</u>:  0 	 <u>Max</u>:  2.944e+06 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_EG_KT_CE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  128  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_METH_EG_KT_CE_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_ACCS_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_ACCS_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  980 / 13778  ( 7.113 %) <br> <u>Missing</u>:  12798  ( 92.89 %)<p> <u>Mean</u>:  74.51 	 <u>StdDev</u>:  31.18 <br><u>Median</u>:  90.88 	 <u>IQR</u>:  52.49 - 100 <br><u>Min</u>:  0 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_ACCS_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_ACCS_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_NOXE_KT_CE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_KT_CE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  832 / 13778  ( 6.039 %) <br> <u>Missing</u>:  12946  ( 93.96 %)<p> <u>Mean</u>:  1.166e+05 	 <u>StdDev</u>:  3.302e+05 <br><u>Median</u>:  7926 	 <u>IQR</u>:  2545 - 4.247e+04 <br><u>Min</u>:  0 	 <u>Max</u>:  2.86e+06 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_KT_CE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  145  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_KT_CE_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_CO2_TRAN_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_TRAN_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  7005 / 13778  ( 50.84 %) <br> <u>Missing</u>:  6773  ( 49.16 %)<p> <u>Mean</u>:  26.79 	 <u>StdDev</u>:  15.5 <br><u>Median</u>:  24.03 	 <u>IQR</u>:  15.52 - 33.77 <br><u>Min</u>:  0 	 <u>Max</u>:  91.76 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_TRAN_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  280  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_TRAN_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NY_ADJ_SVNX_GN_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_SVNX_GN_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  5896 / 13778  ( 42.79 %) <br> <u>Missing</u>:  7882  ( 57.21 %)<p> <u>Mean</u>:  7.943 	 <u>StdDev</u>:  13.49 <br><u>Median</u>:  9.331 	 <u>IQR</u>:  3.411 - 14.42 <br><u>Min</u>:  -240.1 	 <u>Max</u>:  129.1 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_SVNX_GN_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  376  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_SVNX_GN_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_NOXE_EI_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_EI_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  830 / 13778  ( 6.024 %) <br> <u>Missing</u>:  12948  ( 93.98 %)<p> <u>Mean</u>:  14.8 	 <u>StdDev</u>:  12.85 <br><u>Median</u>:  11.02 	 <u>IQR</u>:  4.863 - 21.42 <br><u>Min</u>:  0.5913 	 <u>Max</u>:  94.41 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_EI_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  22  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_EI_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_CLC_GHGR_MT_CE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CLC_GHGR_MT_CE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  940 / 13778  ( 6.822 %) <br> <u>Missing</u>:  12838  ( 93.18 %)<p> <u>Mean</u>:  -37.04 	 <u>StdDev</u>:  150 <br><u>Median</u>:  -8.185 	 <u>IQR</u>:  -28.46 - -0.3244 <br><u>Min</u>:  -1034 	 <u>Max</u>:  1329 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CLC_GHGR_MT_CE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  123  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CLC_GHGR_MT_CE_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_NGAS_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_NGAS_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  6761 / 13778  ( 49.07 %) <br> <u>Missing</u>:  7017  ( 50.93 %)<p> <u>Mean</u>:  17.14 	 <u>StdDev</u>:  25.97 <br><u>Median</u>:  5.106 	 <u>IQR</u>:  0 - 21.68 <br><u>Min</u>:  0 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_NGAS_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  616  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_NGAS_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> IC_ELC_OUTG </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/IC_ELC_OUTG_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  247 / 13778  ( 1.793 %) <br> <u>Missing</u>:  13531  ( 98.21 %)<p> <u>Mean</u>:  6.786 	 <u>StdDev</u>:  12.26 <br><u>Median</u>:  2.3 	 <u>IQR</u>:  0.8 - 7.425 <br><u>Min</u>:  0 	 <u>Max</u>:  100.7 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/IC_ELC_OUTG_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  24  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/IC_ELC_OUTG_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_GDP_PUSE_KO_PP </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_GDP_PUSE_KO_PP_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  3718 / 13778  ( 26.99 %) <br> <u>Missing</u>:  10060  ( 73.01 %)<p> <u>Mean</u>:  6.803 	 <u>StdDev</u>:  5.8 <br><u>Median</u>:  6.161 	 <u>IQR</u>:  4.12 - 8.455 <br><u>Min</u>:  0.5473 	 <u>Max</u>:  188.8 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_GDP_PUSE_KO_PP_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  95  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_GDP_PUSE_KO_PP_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_PETR_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_PETR_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  6761 / 13778  ( 49.07 %) <br> <u>Missing</u>:  7017  ( 50.93 %)<p> <u>Mean</u>:  22.31 	 <u>StdDev</u>:  27.7 <br><u>Median</u>:  10.43 	 <u>IQR</u>:  2.53 - 31.09 <br><u>Min</u>:  0 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_PETR_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  368  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_PETR_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_ELC_RNWX_KH </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_RNWX_KH_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  7035 / 13778  ( 51.06 %) <br> <u>Missing</u>:  6743  ( 48.94 %)<p> <u>Mean</u>:  8.79e+09 	 <u>StdDev</u>:  4.685e+10 <br><u>Median</u>:  2.4e+07 	 <u>IQR</u>:  0 - 9.035e+08 <br><u>Min</u>:  0 	 <u>Max</u>:  1.072e+12 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_RNWX_KH_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  1284  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_ELC_RNWX_KH_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_USE_COMM_CL_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_COMM_CL_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  7021 / 13778  ( 50.96 %) <br> <u>Missing</u>:  6757  ( 49.04 %)<p> <u>Mean</u>:  6.854 	 <u>StdDev</u>:  10.94 <br><u>Median</u>:  2.777 	 <u>IQR</u>:  0.7022 - 8.314 <br><u>Min</u>:  0 	 <u>Max</u>:  99.43 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_COMM_CL_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  622  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_COMM_CL_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_CO2E_SF_KT </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_SF_KT_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  10070 / 13778  ( 73.09 %) <br> <u>Missing</u>:  3708  ( 26.91 %)<p> <u>Mean</u>:  2.182e+05 	 <u>StdDev</u>:  8.233e+05 <br><u>Median</u>:  99.01 	 <u>IQR</u>:  0 - 1.312e+04 <br><u>Min</u>:  0 	 <u>Max</u>:  1.023e+07 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_SF_KT_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  1959  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_SF_KT_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_USE_CRNW_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_CRNW_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  7035 / 13778  ( 51.06 %) <br> <u>Missing</u>:  6743  ( 48.94 %)<p> <u>Mean</u>:  22.86 	 <u>StdDev</u>:  28.3 <br><u>Median</u>:  7.604 	 <u>IQR</u>:  1.52 - 38.03 <br><u>Min</u>:  0 	 <u>Max</u>:  98.19 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_CRNW_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  92  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_CRNW_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NY_ADJ_SVNG_GN_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_SVNG_GN_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  927 / 13778  ( 6.728 %) <br> <u>Missing</u>:  12851  ( 93.27 %)<p> <u>Mean</u>:  7.042 	 <u>StdDev</u>:  13.07 <br><u>Median</u>:  8.05 	 <u>IQR</u>:  2.918 - 13.85 <br><u>Min</u>:  -108 	 <u>Max</u>:  94.11 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_SVNG_GN_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  66  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_SVNG_GN_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EG_USE_ELEC_KH_PC </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_ELEC_KH_PC_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  6611 / 13778  ( 47.98 %) <br> <u>Missing</u>:  7167  ( 52.02 %)<p> <u>Mean</u>:  3059 	 <u>StdDev</u>:  4191 <br><u>Median</u>:  1474 	 <u>IQR</u>:  429.1 - 4260 <br><u>Min</u>:  5.803 	 <u>Max</u>:  5.32e+04 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_ELEC_KH_PC_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  395  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EG_USE_ELEC_KH_PC_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NY_GDP_MKTP_CD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_GDP_MKTP_CD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  10346 / 13778  ( 75.09 %) <br> <u>Missing</u>:  3432  ( 24.91 %)<p> <u>Mean</u>:  8.572e+11 	 <u>StdDev</u>:  4.245e+12 <br><u>Median</u>:  1.049e+10 	 <u>IQR</u>:  1.689e+09 - 1.169e+11 <br><u>Min</u>:  8.825e+06 	 <u>Max</u>:  7.785e+13 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_GDP_MKTP_CD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  1776  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_GDP_MKTP_CD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NY_ADJ_DNGY_CD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_DNGY_CD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  9373 / 13778  ( 68.03 %) <br> <u>Missing</u>:  4405  ( 31.97 %)<p> <u>Mean</u>:  2.507e+09 	 <u>StdDev</u>:  1.25e+10 <br><u>Median</u>:  0 	 <u>IQR</u>:  0 - 2.885e+08 <br><u>Min</u>:  0 	 <u>Max</u>:  2.806e+11 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_DNGY_CD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  1898  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_DNGY_CD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NY_ADJ_DPEM_CD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_DPEM_CD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  678 / 13778  ( 4.921 %) <br> <u>Missing</u>:  13100  ( 95.08 %)<p> <u>Mean</u>:  5.953e+08 	 <u>StdDev</u>:  2.153e+09 <br><u>Median</u>:  8.27e+07 	 <u>IQR</u>:  1.067e+07 - 3.39e+08 <br><u>Min</u>:  0 	 <u>Max</u>:  2.529e+10 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_DPEM_CD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  93  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_DPEM_CD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_CO2E_KD_GD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_KD_GD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  8723 / 13778  ( 63.31 %) <br> <u>Missing</u>:  5055  ( 36.69 %)<p> <u>Mean</u>:  0.8065 	 <u>StdDev</u>:  0.9352 <br><u>Median</u>:  0.5176 	 <u>IQR</u>:  0.3373 - 0.9544 <br><u>Min</u>:  0.006446 	 <u>Max</u>:  12.38 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_KD_GD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  567  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_KD_GD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NY_ADJ_SVNG_CD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_SVNG_CD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  388 / 13778  ( 2.816 %) <br> <u>Missing</u>:  13390  ( 97.18 %)<p> <u>Mean</u>:  3.288e+10 	 <u>StdDev</u>:  1.212e+11 <br><u>Median</u>:  1.336e+09 	 <u>IQR</u>:  2.223e+07 - 1.475e+10 <br><u>Min</u>:  -2.307e+10 	 <u>Max</u>:  1.773e+12 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_SVNG_CD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  71  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/NY_ADJ_SVNG_CD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_CO2E_SF_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_SF_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  10747 / 13778  ( 78 %) <br> <u>Missing</u>:  3031  ( 22 %)<p> <u>Mean</u>:  16.14 	 <u>StdDev</u>:  23.35 <br><u>Median</u>:  2.581 	 <u>IQR</u>:  0 - 27.62 <br><u>Min</u>:  0 	 <u>Max</u>:  100 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_SF_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  477  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_SF_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_CO2E_PP_GD_KD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_PP_GD_KD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  4582 / 13778  ( 33.26 %) <br> <u>Missing</u>:  9196  ( 66.74 %)<p> <u>Mean</u>:  0.3034 	 <u>StdDev</u>:  0.2392 <br><u>Median</u>:  0.2443 	 <u>IQR</u>:  0.1559 - 0.3747 <br><u>Min</u>:  0.003173 	 <u>Max</u>:  2.235 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_PP_GD_KD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  250  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_CO2E_PP_GD_KD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_NOXE_IN_KT_CE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_IN_KT_CE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  672 / 13778  ( 4.877 %) <br> <u>Missing</u>:  13106  ( 95.12 %)<p> <u>Mean</u>:  1247 	 <u>StdDev</u>:  3769 <br><u>Median</u>:  0 	 <u>IQR</u>:  0 - 758.3 <br><u>Min</u>:  0 	 <u>Max</u>:  4.462e+04 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_IN_KT_CE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  90  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_IN_KT_CE_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_POP_DNST </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_POP_DNST_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  12988 / 13778  ( 94.27 %) <br> <u>Missing</u>:  790  ( 5.734 %)<p> <u>Mean</u>:  273.2 	 <u>StdDev</u>:  1457 <br><u>Median</u>:  50.4 	 <u>IQR</u>:  17.98 - 124.6 <br><u>Min</u>:  0.09862 	 <u>Max</u>:  2.16e+04 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_POP_DNST_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  1412  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_POP_DNST_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_NOXE_EG_KT_CE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_EG_KT_CE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  832 / 13778  ( 6.039 %) <br> <u>Missing</u>:  12946  ( 93.96 %)<p> <u>Mean</u>:  1.076e+04 	 <u>StdDev</u>:  3.284e+04 <br><u>Median</u>:  487.8 	 <u>IQR</u>:  140.2 - 3692 <br><u>Min</u>:  0 	 <u>Max</u>:  2.887e+05 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_EG_KT_CE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  121  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_NOXE_EG_KT_CE_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> IE_PPI_ENGY_CD </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/IE_PPI_ENGY_CD_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  1054 / 13778  ( 7.65 %) <br> <u>Missing</u>:  12724  ( 92.35 %)<p> <u>Mean</u>:  3.624e+09 	 <u>StdDev</u>:  9.258e+09 <br><u>Median</u>:  3.154e+08 	 <u>IQR</u>:  4.19e+07 - 2.013e+09 <br><u>Min</u>:  0 	 <u>Max</u>:  7.33e+10 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/IE_PPI_ENGY_CD_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  171  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/IE_PPI_ENGY_CD_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_CO2_BLDG_ZS </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_BLDG_ZS_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  7005 / 13778  ( 50.84 %) <br> <u>Missing</u>:  6773  ( 49.16 %)<p> <u>Mean</u>:  11.26 	 <u>StdDev</u>:  7.981 <br><u>Median</u>:  9.884 	 <u>IQR</u>:  5.378 - 15.54 <br><u>Min</u>:  0 	 <u>Max</u>:  48.04 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_BLDG_ZS_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  169  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_CO2_BLDG_ZS_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EN_ATM_SF6G_KT_CE </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_SF6G_KT_CE_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  741 / 13778  ( 5.378 %) <br> <u>Missing</u>:  13037  ( 94.62 %)<p> <u>Mean</u>:  3564 	 <u>StdDev</u>:  1.371e+04 <br><u>Median</u>:  0 	 <u>IQR</u>:  0 - 544.1 <br><u>Min</u>:  0 	 <u>Max</u>:  1.359e+05 </div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_SF6G_KT_CE_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  132  outlier values</div>
+<div class='Cell'><img class='origimg' src='C:/Users/Mayer/Documents/DataScience/project/report-r/fig/EN_ATM_SF6G_KT_CE_3.png' height='150' width='150'><br></div>
+</div>
+</div>
+</div>
+                <div data-role='popup' id='myContainer' style='display: none;'>
+                <img id='popup_img' src='' />
+                </div>
+                </div>
+                </div>
+                </div>
+                <p>
+                <div class='onetoone'>
+                <form id='myform2'>
+                <span> <input type='button' id='less' value=' << '> </span>
+                <span> <input id='idx' name='idx' value='1'></input></span>
+                <span> <input type='button' id='more' value=' >> '> </span>
+                </form>
+                </div>
+                <p>
+                </body></html>
+                

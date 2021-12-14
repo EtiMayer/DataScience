@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-12-14T22:08:47.808Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36" etag="hcs9wdERqYqb5_IAIMRG" version="15.9.6" type="github">
+<mxfile host="app.diagrams.net" modified="2021-12-14T22:10:03.989Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36" etag="LHYxYXAaxySPMQYLudbH" version="15.9.6" type="github">
   <diagram name="Page-1" id="edf60f1a-56cd-e834-aa8a-f176f3a09ee4">
     <mxGraphModel dx="1157" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
@@ -20,7 +20,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="60e70716793133e9-5" value="&lt;b style=&quot;font-size: 10px;&quot;&gt;Flat File &lt;/b&gt;- I&#39;ve created&amp;nbsp;" style="rhombus;whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=10;align=center;" parent="1" vertex="1">
+        <mxCell id="60e70716793133e9-5" value="&lt;b style=&quot;font-size: 10px&quot;&gt;Flat File &lt;/b&gt;-done" style="rhombus;whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=10;align=center;" parent="1" vertex="1">
           <mxGeometry x="180" y="360" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="60e70716793133e9-34" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=none;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeWidth=1;fontFamily=Verdana;fontSize=8" parent="1" source="60e70716793133e9-7" target="60e70716793133e9-8" edge="1">
@@ -53,7 +53,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="60e70716793133e9-9" value="Create a work order" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
-          <mxGeometry x="200" y="470" width="120" height="40" as="geometry" />
+          <mxGeometry x="180" y="470" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="60e70716793133e9-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=none;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeWidth=1;fontFamily=Verdana;fontSize=8" parent="1" source="60e70716793133e9-10" target="60e70716793133e9-12" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -237,6 +237,9 @@
         </mxCell>
         <mxCell id="ecz7DTulXrqKq4o4k-UH-4" value="Hundreds activist campigns are being open every year&lt;br style=&quot;font-size: 15px&quot;&gt;&lt;div style=&quot;font-size: 15px&quot;&gt;Some of them are a succes, some are a faliure and few are prominantly successful&lt;/div&gt;&lt;div style=&quot;font-size: 15px&quot;&gt;My target is to find those successful campigns, and predict whether a new campign will be worth investment or not&lt;/div&gt;&lt;div style=&quot;font-size: 15px&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 15px&quot;&gt;Langueges: SQL, R, Python (I want to focus on python)&lt;/div&gt;&lt;div style=&quot;font-size: 15px&quot;&gt;Main Pacages: Pandas, NumPy, seaborn. scikit learn&lt;/div&gt;&lt;div style=&quot;font-size: 15px&quot;&gt;Main platformes: Jupiter notebook, SQL serever&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 15px&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=15;fontStyle=0;verticalAlign=middle;align=left;glass=1;labelBackgroundColor=#FFFFFF;" vertex="1" parent="1">
           <mxGeometry x="80" y="117" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ecz7DTulXrqKq4o4k-UH-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;fontSize=10;" edge="1" parent="1" source="60e70716793133e9-7" target="60e70716793133e9-7">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

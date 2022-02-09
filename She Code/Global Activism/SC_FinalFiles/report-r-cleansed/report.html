@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+      <html>
+      <head>
+      <title>Data Visualization</title>
+      <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+      <link rel='stylesheet' href='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'>
+
+      <script src='http://code.jquery.com/jquery-1.10.2.js'></script>
+      <script>
+      $(document).ready(function(){
+      $('.onetoone').hide();
+      });
+
+      $(function() {
+      $('.origimg').click(function(e) {
+      $('#popup_img').attr('src',$(this).attr('src'));
+      $('#myContainer').hide();
+      var pos = $(document).scrollTop();
+      $('#myContainer').css({'top':pos+20,'left':250, 'position':'absolute', 'border':'1px solid black', 'padding':'0px'});
+      $('#myContainer').show();
+      });
+      $('#myContainer').click(function(e) {
+      $('#myContainer').hide();
+      });
+
+      $('#myform2').submit(function(e) {
+      e.preventDefault();
+      });
+
+      $('#onetoone').on('click',function() {
+      console.log('onetone button - 1');
+      $('#onetoone').hide();
+      $('#aslist').show();
+      // To show only individual rows:
+      $('.Row').hide();
+      $('.onetoone').show();
+      // then we iterate
+      var i = $('.Row').length;
+      // Then we iterate
+      var nxt = $('#idx').val();
+      if (nxt < i & nxt >0) {
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(1)
+      }
+      console.log('onetone button - 2');
+      });
+
+      $('#aslist').on('click',function() {
+      console.log('aslist button - 1');
+      $('#onetoone').show();
+      $('#aslist').hide();
+      $('.onetoone').hide();
+      $('.Row').show();
+      console.log('aslist button - 2');
+      });
+
+      $('#less').on('click',function(){
+      console.log('less button - 1');
+      var i = $('.Row').length;
+      var nxt = parseInt($('#idx').val(),10) - 1;
+      if (nxt < i & nxt >0) {
+      $('#idx').val(nxt)
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(1)
+      }
+      console.log('less button - 2');
+      });
+
+      $('#more').on('click',function(){
+      console.log('more button - 1');
+      var i = $('.Row').length;
+      var nxt = parseInt($('#idx').val(),10) + 1;
+      if (nxt < i & nxt >0) {
+      $('#idx').val(nxt)
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(i)
+      }
+      console.log('more button - 2');
+      });
+
+      $('#idx').on('change', function(){
+      console.log('idx changed - 1');
+      var i = $('.Row').length;
+      var nxt = $('#idx').val();
+      if (nxt < i & nxt >0) {
+      $('#idx').val(nxt)
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(i)
+      }
+      console.log('idx changed - 2');
+      });
+      });
+
+      </script>
+
+      <style type='text/css'>
+      .Table
+      {
+      display: table;
+      }
+      .Title
+      {
+      display: table-caption;
+      text-align: center;
+      font-weight: bold;
+      font-size: larger;
+      background-color:#4C6F50;
+      color: #fff;
+      }
+      .Row
+      {
+      display: table-row;
+      }
+      .Row:nth-child(even) {
+        background-color: #56882433;
+      }
+      .Cell
+      {
+      display: table-cell;
+      border: solid;
+      border-width: thin;
+      padding-left: 5px;
+      padding-right: 5px;
+      vertical-align: top;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      }
+      </style>
+
+      </head>
+
+      <body>
+      <div id='pageone' data-role='main' class='ui-content'>
+      
+<p><p><h1> Data Visualization & Exploration </h1>
+                <form>
+                <input type='button' id='onetoone' value='Show as Cards'>
+                <input type='button' id='aslist' class='onetoone' value='Show as List'>
+                </form>
+                <p>
+                
+<p><p>
+                <div class='Table'>
+                <div class='Row'>
+                <div class='Cell Title'> Variable </div>
+                <div class='Cell Title'> Distribution </div>
+                <div class='Cell Title'> Descriptive <br> Statistics</div>
+                <div class='Cell Title'> Outliers </div> <div class='Cell Title'> Dependent <br> Variable <br> Distribution </div> </div>
+<div class='Row'><div class='Cell'><b> Investor.ID </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Investor.ID_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  5542 	 <u>StdDev</u>:  1959 <br><u>Median</u>:  5760 	 <u>IQR</u>:  5087 - 6621 <br><u>Min</u>:  2 	 <u>Max</u>:  11059 </div>
+<div class='Cell'><img class='origimg' src='fig/Investor.ID_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  336  outlier values</div>
+<div class='Cell'><img class='origimg' src='fig/Investor.ID_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Activist </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Activist_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2716 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Activist_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistHQ </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistHQ_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  69 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistHQ_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistRegion </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistRegion_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  5 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistRegion_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Founded </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Founded_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Founded_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> FirstDateInvestedByActivisit </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/FirstDateInvestedByActivisit_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2708 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/FirstDateInvestedByActivisit_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CurrentHolding </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CurrentHolding_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CurrentHolding_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> StatusCurrent </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/StatusCurrent_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  4770 </li> <li><u> 1 </u>:  4529 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/StatusCurrent_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> StatusExisted </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/StatusExisted_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  4529 </li> <li><u> 1 </u>:  4770 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/StatusExisted_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> DateExited </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/DateExited_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  16 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/DateExited_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ExitType </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ExitType_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  19 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ExitType_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Company </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Company_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  5365 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Company_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PID </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PID_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  1.405e+04 	 <u>StdDev</u>:  1.481e+04 <br><u>Median</u>:  6607 	 <u>IQR</u>:  2002 - 2.652e+04 <br><u>Min</u>:  1 	 <u>Max</u>:  49460 </div>
+<div class='Cell'><img class='origimg' src='fig/PID_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='fig/PID_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CompanyHQ </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CompanyHQ_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  61 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CompanyHQ_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ConpanyRegion </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ConpanyRegion_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> FarEast </u>:  732 </li> <li><u> NorthAmerica </u>:  6285 </li> <li><u> RestOfTheWorld </u>:  917 </li> <li><u> WestEurope </u>:  1365 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ConpanyRegion_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Currency </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Currency_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  12 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Currency_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> FR_PriceStart </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/FR_PriceStart_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/FR_PriceStart_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> FR_PriceEnd </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/FR_PriceEnd_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/FR_PriceEnd_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PriceChangeSinceExitByCamp </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PriceChangeSinceExitByCamp_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PriceChangeSinceExitByCamp_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SPChangeSinceExitByCamp </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/SPChangeSinceExitByCamp_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/SPChangeSinceExitByCamp_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AvgChangeOverPeriodOfInvByAct </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AvgChangeOverPeriodOfInvByAct_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AvgChangeOverPeriodOfInvByAct_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AvgReturnAnnualisedByAct </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AvgReturnAnnualisedByAct_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AvgReturnAnnualisedByAct_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AvgSPReturnByAct </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AvgSPReturnByAct_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AvgSPReturnByAct_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AvgSPReturnAnnualisedByAct </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AvgSPReturnAnnualisedByAct_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AvgSPReturnAnnualisedByAct_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ExcessReturnByAct </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ExcessReturnByAct_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ExcessReturnByAct_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> LastInv </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/LastInv_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  1503 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/LastInv_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ReturnByCamp </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ReturnByCamp_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ReturnByCamp_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ReturnAnnualisedByCamp </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ReturnAnnualisedByCamp_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ReturnAnnualisedByCamp_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SPChangeByCamp </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/SPChangeByCamp_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/SPChangeByCamp_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SPChangeAnnualisedByCamp </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/SPChangeAnnualisedByCamp_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/SPChangeAnnualisedByCamp_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NoOfCamp </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/NoOfCamp_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/NoOfCamp_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PositiveReturnByCamp </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PositiveReturnByCamp_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PositiveReturnByCamp_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ExcessReturnByCamp </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ExcessReturnByCamp_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ExcessReturnByCamp_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> HitRatioByAct </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/HitRatioByAct_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/HitRatioByAct_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NoOfCamp3Y </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/NoOfCamp3Y_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  5 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/NoOfCamp3Y_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PositiveReturnByCamp3Y </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PositiveReturnByCamp3Y_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> 0 </u>:  4720 </li> <li><u> 11 </u>:  1573 </li> <li><u> 2 </u>:  1572 </li> <li><u> miss </u>:  1434 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PositiveReturnByCamp3Y_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> HitRatioByAct3Y </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/HitRatioByAct3Y_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  0.2261 	 <u>StdDev</u>:  0.2845 <br><u>Median</u>:  0 	 <u>IQR</u>:  0 - 0.4242 <br><u>Min</u>:  0 	 <u>Max</u>:  1 </div>
+<div class='Cell'><img class='origimg' src='fig/HitRatioByAct3Y_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='fig/HitRatioByAct3Y_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Industry </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Industry_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  153 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Industry_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Sector </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Sector_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  14 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Sector_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CampByIND </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CampByIND_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  5 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CampByIND_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PositiveReturnByIND </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PositiveReturnByIND_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  5 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PositiveReturnByIND_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> HitRatioByIND </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/HitRatioByIND_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  0.3306 	 <u>StdDev</u>:  0.3199 <br><u>Median</u>:  0.3333 	 <u>IQR</u>:  0 - 0.5 <br><u>Min</u>:  0 	 <u>Max</u>:  1 </div>
+<div class='Cell'><img class='origimg' src='fig/HitRatioByIND_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='fig/HitRatioByIND_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CampByIND3Y </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CampByIND3Y_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> 0 </u>:  4716 </li> <li><u> 1 </u>:  1565 </li> <li><u> 5 </u>:  1574 </li> <li><u> miss </u>:  1444 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CampByIND3Y_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PositiveReturnByIND3Y </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PositiveReturnByIND3Y_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 0 </u>:  6441 </li> <li><u> 2 </u>:  1619 </li> <li><u> miss </u>:  1239 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PositiveReturnByIND3Y_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> HitRatioByIND3Y </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/HitRatioByIND3Y_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> 0 </u>:  5142 </li> <li><u> 0.137931 </u>:  1713 </li> <li><u> 0.714285 </u>:  1717 </li> <li><u> miss </u>:  727 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/HitRatioByIND3Y_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NoOfInvByIND </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/NoOfInvByIND_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/NoOfInvByIND_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AvgChangeOverPeriodOfInvByIND </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AvgChangeOverPeriodOfInvByIND_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AvgChangeOverPeriodOfInvByIND_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AvgReturnAnnualisedByIND </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AvgReturnAnnualisedByIND_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AvgReturnAnnualisedByIND_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AvgSPReturnByIND </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AvgSPReturnByIND_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AvgSPReturnByIND_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AvgSPReturnAnnualisedByIND </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AvgSPReturnAnnualisedByIND_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AvgSPReturnAnnualisedByIND_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> MarketCap </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/MarketCap_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/MarketCap_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> MarketCapCategory </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/MarketCapCategory_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> Large-Cap </u>:  24 </li> <li><u> Mid-Cap </u>:  145 </li> <li><u> Nano-Cap </u>:  8329 </li> <li><u> Small-Cap </u>:  801 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/MarketCapCategory_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CampByMC </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CampByMC_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  5 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CampByMC_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PositiveReturnByMC </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PositiveReturnByMC_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  5 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PositiveReturnByMC_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> HitRatioByMC </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/HitRatioByMC_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  5 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/HitRatioByMC_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CampByMC3Y </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CampByMC3Y_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  5 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CampByMC3Y_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PositiveReturnByMC3Y </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PositiveReturnByMC3Y_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> 0 </u>:  5013 </li> <li><u> 10 </u>:  1670 </li> <li><u> 2 </u>:  1672 </li> <li><u> miss </u>:  944 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PositiveReturnByMC3Y_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> HitRatioByMC3Y </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/HitRatioByMC3Y_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  0.216 	 <u>StdDev</u>:  0.2901 <br><u>Median</u>:  0 	 <u>IQR</u>:  0 - 0.4074 <br><u>Min</u>:  0 	 <u>Max</u>:  1 </div>
+<div class='Cell'><img class='origimg' src='fig/HitRatioByMC3Y_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='fig/HitRatioByMC3Y_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NoOfInvByMC </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/NoOfInvByMC_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> 7.46049030582534 </u>:  24 </li> <li><u> 7.50604217851812 </u>:  145 </li> <li><u> 7.64108424917491 </u>:  8329 </li> <li><u> 8.02486215028641 </u>:  801 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/NoOfInvByMC_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AvgChangeOverPeriodOfInvByMC </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AvgChangeOverPeriodOfInvByMC_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> 3.74313086894585 </u>:  145 </li> <li><u> 4.09817056705563 </u>:  24 </li> <li><u> 4.20289996877645 </u>:  801 </li> <li><u> 4.52774903901951 </u>:  8329 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AvgChangeOverPeriodOfInvByMC_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AvgSPReturnByMC </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AvgSPReturnByMC_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> 3.73624002547377 </u>:  145 </li> <li><u> 3.74903337693368 </u>:  801 </li> <li><u> 3.85904408063726 </u>:  24 </li> <li><u> 4.07838454264337 </u>:  8329 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AvgSPReturnByMC_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ConcernedShareholder </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ConcernedShareholder_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  8324 </li> <li><u> 1 </u>:  975 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ConcernedShareholder_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Engagement </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Engagement_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  8356 </li> <li><u> 1 </u>:  943 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Engagement_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Occasional </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Occasional_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  7649 </li> <li><u> 1 </u>:  1650 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Occasional_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PartialFocus </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PartialFocus_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  7126 </li> <li><u> 1 </u>:  2173 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PartialFocus_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PrimaryFocus </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PrimaryFocus_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  5748 </li> <li><u> 1 </u>:  3551 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PrimaryFocus_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistAUM </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistAUM_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistAUM_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistAUMDate </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistAUMDate_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  323 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistAUMDate_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> GainBoardRepresentation </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/GainBoardRepresentation_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  6614 </li> <li><u> 1 </u>:  2685 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/GainBoardRepresentation_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AdoptMajorityVoteStandard </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AdoptMajorityVoteStandard_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9121 </li> <li><u> 1 </u>:  178 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AdoptMajorityVoteStandard_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AmendByLaw </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AmendByLaw_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  8666 </li> <li><u> 1 </u>:  633 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AmendByLaw_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AmendListingStatus </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AmendListingStatus_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9282 </li> <li><u> 1 </u>:  17 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AmendListingStatus_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> BoardIndependence </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/BoardIndependence_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9070 </li> <li><u> 1 </u>:  229 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/BoardIndependence_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> BusinessFocus </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/BusinessFocus_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9143 </li> <li><u> 1 </u>:  156 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/BusinessFocus_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> BusinessRestructuring </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/BusinessRestructuring_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9233 </li> <li><u> 1 </u>:  66 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/BusinessRestructuring_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ChangeBoardComposition </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ChangeBoardComposition_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  8952 </li> <li><u> 1 </u>:  347 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ChangeBoardComposition_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ClosureOfBusinessUnit </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ClosureOfBusinessUnit_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9292 </li> <li><u> 1 </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ClosureOfBusinessUnit_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Dividends </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Dividends_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9091 </li> <li><u> 1 </u>:  208 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Dividends_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EliminateStaggeredBoard </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/EliminateStaggeredBoard_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9146 </li> <li><u> 1 </u>:  153 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/EliminateStaggeredBoard_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EquityIssuance </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/EquityIssuance_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9272 </li> <li><u> 1 </u>:  27 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/EquityIssuance_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ExcessCash </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ExcessCash_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9282 </li> <li><u> 1 </u>:  17 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ExcessCash_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> FocusOnGrowthStrategies </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/FocusOnGrowthStrategies_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9233 </li> <li><u> 1 </u>:  66 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/FocusOnGrowthStrategies_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> GeneralCostCutting </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/GeneralCostCutting_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9140 </li> <li><u> 1 </u>:  159 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/GeneralCostCutting_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> LackOfInaccurateInformationFromCompany </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/LackOfInaccurateInformationFromCompany_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9019 </li> <li><u> 1 </u>:  280 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/LackOfInaccurateInformationFromCompany_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> OperationalEfficiency </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/OperationalEfficiency_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9194 </li> <li><u> 1 </u>:  105 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/OperationalEfficiency_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> OpposeAcquisitionOfThirdParty </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/OpposeAcquisitionOfThirdParty_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9197 </li> <li><u> 1 </u>:  102 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/OpposeAcquisitionOfThirdParty_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> OpposeEquityIssuance </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/OpposeEquityIssuance_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9217 </li> <li><u> 1 </u>:  82 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/OpposeEquityIssuance_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> OpposeSaleOfCompany </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/OpposeSaleOfCompany_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  8974 </li> <li><u> 1 </u>:  325 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/OpposeSaleOfCompany_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PushForAcquisitionOfThirdParty </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PushForAcquisitionOfThirdParty_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9276 </li> <li><u> 1 </u>:  23 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PushForAcquisitionOfThirdParty_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PushForCompanyDivision </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PushForCompanyDivision_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9263 </li> <li><u> 1 </u>:  36 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PushForCompanyDivision_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PushForSaleOfCompany </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PushForSaleOfCompany_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  8527 </li> <li><u> 1 </u>:  772 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PushForSaleOfCompany_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PushForOpposeMergingOfShares </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PushForOpposeMergingOfShares_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9265 </li> <li><u> 1 </u>:  34 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PushForOpposeMergingOfShares_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Recapitalization </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Recapitalization_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9275 </li> <li><u> 1 </u>:  24 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Recapitalization_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> RedemptionAmendmentOfPoisonPill </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/RedemptionAmendmentOfPoisonPill_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9236 </li> <li><u> 1 </u>:  63 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/RedemptionAmendmentOfPoisonPill_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> REITorMLPConversion </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/REITorMLPConversion_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9276 </li> <li><u> 1 </u>:  23 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/REITorMLPConversion_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> RemovalOfCEOorOtherBoardMember </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/RemovalOfCEOorOtherBoardMember_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  8076 </li> <li><u> 1 </u>:  1223 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/RemovalOfCEOorOtherBoardMember_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Remuneration </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Remuneration_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  8887 </li> <li><u> 1 </u>:  412 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Remuneration_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ReplaceAuditor </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ReplaceAuditor_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9271 </li> <li><u> 1 </u>:  28 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ReplaceAuditor_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ReplaceManagement </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ReplaceManagement_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9218 </li> <li><u> 1 </u>:  81 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ReplaceManagement_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> RestructureDebt </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/RestructureDebt_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9259 </li> <li><u> 1 </u>:  40 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/RestructureDebt_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ReturnCashToShareholders </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ReturnCashToShareholders_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9222 </li> <li><u> 1 </u>:  77 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ReturnCashToShareholders_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SellOrRetainAssets </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/SellOrRetainAssets_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9069 </li> <li><u> 1 </u>:  230 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/SellOrRetainAssets_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SeparateChairmanAndCEO </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/SeparateChairmanAndCEO_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9221 </li> <li><u> 1 </u>:  78 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/SeparateChairmanAndCEO_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ShareRepurchase </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ShareRepurchase_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  8957 </li> <li><u> 1 </u>:  342 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ShareRepurchase_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SpinOffSaleOfBusinessDivision </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/SpinOffSaleOfBusinessDivision_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9096 </li> <li><u> 1 </u>:  203 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/SpinOffSaleOfBusinessDivision_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SuccessionPlanning </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/SuccessionPlanning_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9295 </li> <li><u> 1 </u>:  4 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/SuccessionPlanning_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> TerminateInvestmentAdvisoryAgreement </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/TerminateInvestmentAdvisoryAgreement_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9228 </li> <li><u> 1 </u>:  71 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/TerminateInvestmentAdvisoryAgreement_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> UnderLeverage </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/UnderLeverage_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9293 </li> <li><u> 1 </u>:  6 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/UnderLeverage_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> UseUniversalBallot </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/UseUniversalBallot_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  9296 </li> <li><u> 1 </u>:  3 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/UseUniversalBallot_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AGM </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AGM_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  8125 </li> <li><u> 2 </u>:  1167 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AGM_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistWithdrewDemands </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistWithdrewDemands_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9018 </li> <li><u> 2 </u>:  274 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistWithdrewDemands_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NA. </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/NA._1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  6978 </li> <li><u> 2 </u>:  2314 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/NA._3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> AGMResult </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/AGMResult_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9087 </li> <li><u> 2 </u>:  205 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/AGMResult_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> MergerCompleted </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/MergerCompleted_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9252 </li> <li><u> 2 </u>:  40 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/MergerCompleted_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EGMorSpecialMeeting </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/EGMorSpecialMeeting_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9017 </li> <li><u> 2 </u>:  275 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/EGMorSpecialMeeting_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ProxyContest </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ProxyContest_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  8211 </li> <li><u> 2 </u>:  1081 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ProxyContest_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistExitsStock </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistExitsStock_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9144 </li> <li><u> 2 </u>:  148 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistExitsStock_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> MergerOrTakeover </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/MergerOrTakeover_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  8932 </li> <li><u> 2 </u>:  360 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/MergerOrTakeover_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> MetWithDemandsInFull </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/MetWithDemandsInFull_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  8837 </li> <li><u> 2 </u>:  455 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/MetWithDemandsInFull_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PublicDisagreement </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PublicDisagreement_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9215 </li> <li><u> 2 </u>:  77 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PublicDisagreement_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NoPublicResponse </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/NoPublicResponse_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  8893 </li> <li><u> 2 </u>:  399 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/NoPublicResponse_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CompromiseOrAgreement </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CompromiseOrAgreement_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9027 </li> <li><u> 2 </u>:  265 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CompromiseOrAgreement_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ShareholderVote </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ShareholderVote_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9162 </li> <li><u> 2 </u>:  130 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ShareholderVote_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CompanyHiresFiresResignations </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CompanyHiresFiresResignations_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  8996 </li> <li><u> 2 </u>:  296 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CompanyHiresFiresResignations_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistHiresFiresResignations </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistHiresFiresResignations_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9290 </li> <li><u> 2 </u>:  2 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistHiresFiresResignations_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> EngagedActivistPositively </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/EngagedActivistPositively_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9161 </li> <li><u> 2 </u>:  131 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/EngagedActivistPositively_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NewCEOAppointed </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/NewCEOAppointed_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9287 </li> <li><u> 2 </u>:  5 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/NewCEOAppointed_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CompanyRejectsTakeoverBid </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CompanyRejectsTakeoverBid_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9225 </li> <li><u> 2 </u>:  67 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CompanyRejectsTakeoverBid_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CompanyRejectsSpecialMeeting </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CompanyRejectsSpecialMeeting_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9263 </li> <li><u> 2 </u>:  29 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CompanyRejectsSpecialMeeting_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> MeetingsWithBoardOrManagement </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/MeetingsWithBoardOrManagement_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9272 </li> <li><u> 2 </u>:  20 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/MeetingsWithBoardOrManagement_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistWritesToRegulator </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistWritesToRegulator_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9288 </li> <li><u> 2 </u>:  4 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistWritesToRegulator_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CommunicationWithShareholders </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CommunicationWithShareholders_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9276 </li> <li><u> 2 </u>:  16 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CommunicationWithShareholders_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> WentToVote </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/WentToVote_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9239 </li> <li><u> 2 </u>:  53 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/WentToVote_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> JobCuts </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/JobCuts_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9283 </li> <li><u> 2 </u>:  9 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/JobCuts_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ExternalAdvice </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ExternalAdvice_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9285 </li> <li><u> 2 </u>:  7 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ExternalAdvice_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CEOorChairmanDeparts </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CEOorChairmanDeparts_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9289 </li> <li><u> 2 </u>:  3 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CEOorChairmanDeparts_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistAppealsToRegulatorOrCourts </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistAppealsToRegulatorOrCourts_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9284 </li> <li><u> 2 </u>:  8 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistAppealsToRegulatorOrCourts_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Lawsuit </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Lawsuit_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9270 </li> <li><u> 2 </u>:  22 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Lawsuit_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CR_Dividends </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CR_Dividends_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9265 </li> <li><u> 2 </u>:  27 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CR_Dividends_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> DividendOrShareRepurchaseChange </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/DividendOrShareRepurchaseChange_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9278 </li> <li><u> 2 </u>:  14 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/DividendOrShareRepurchaseChange_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CompanyMakesAcquisition </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CompanyMakesAcquisition_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9268 </li> <li><u> 2 </u>:  24 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CompanyMakesAcquisition_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CompanyReleasesFinancials </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CompanyReleasesFinancials_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9283 </li> <li><u> 2 </u>:  9 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CompanyReleasesFinancials_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> WelcomedActivist </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/WelcomedActivist_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9275 </li> <li><u> 2 </u>:  17 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/WelcomedActivist_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Bankruptcy </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Bankruptcy_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9288 </li> <li><u> 2 </u>:  4 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Bankruptcy_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ProxyAccess </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ProxyAccess_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9288 </li> <li><u> 2 </u>:  4 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ProxyAccess_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ImplementAmendPoisonPill </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ImplementAmendPoisonPill_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9271 </li> <li><u> 2 </u>:  21 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ImplementAmendPoisonPill_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistWinsBoardSeats </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistWinsBoardSeats_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9272 </li> <li><u> 2 </u>:  20 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistWinsBoardSeats_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistNominatesBoardMembers </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistNominatesBoardMembers_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9289 </li> <li><u> 2 </u>:  3 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistNominatesBoardMembers_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ThankedActivist </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ThankedActivist_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9287 </li> <li><u> 2 </u>:  5 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ThankedActivist_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ShareholderProposal </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ShareholderProposal_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9286 </li> <li><u> 2 </u>:  6 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ShareholderProposal_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> TenderOffer </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/TenderOffer_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9275 </li> <li><u> 2 </u>:  17 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/TenderOffer_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistDropsBelowReportingThreshold </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistDropsBelowReportingThreshold_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9291 </li> <li><u> 2 </u>:  1 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistDropsBelowReportingThreshold_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> NewMergerAnnounced </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/NewMergerAnnounced_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9287 </li> <li><u> 2 </u>:  5 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/NewMergerAnnounced_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ProxyAdvisorVerdict </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ProxyAdvisorVerdict_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9291 </li> <li><u> 2 </u>:  1 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ProxyAdvisorVerdict_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistStatement </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistStatement_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9289 </li> <li><u> 2 </u>:  3 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistStatement_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PoisonPillImplemented </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PoisonPillImplemented_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9291 </li> <li><u> 2 </u>:  1 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PoisonPillImplemented_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> LawsuitAgainstActivist </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/LawsuitAgainstActivist_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9287 </li> <li><u> 2 </u>:  5 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/LawsuitAgainstActivist_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> LetterToFellowShareholders </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/LetterToFellowShareholders_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9285 </li> <li><u> 2 </u>:  7 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/LetterToFellowShareholders_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistNomineesAppointedToBoard </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistNomineesAppointedToBoard_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9289 </li> <li><u> 2 </u>:  3 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistNomineesAppointedToBoard_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SettlementAgreementConcluded </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/SettlementAgreementConcluded_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9280 </li> <li><u> 2 </u>:  12 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/SettlementAgreementConcluded_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> LetterToBoardOrManagement </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/LetterToBoardOrManagement_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9289 </li> <li><u> 2 </u>:  3 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/LetterToBoardOrManagement_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CompanyRejectsBoardNominations </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CompanyRejectsBoardNominations_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9291 </li> <li><u> 2 </u>:  1 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CompanyRejectsBoardNominations_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> DelayShareholderMeeting </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/DelayShareholderMeeting_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9289 </li> <li><u> 2 </u>:  3 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/DelayShareholderMeeting_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CloseFund </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CloseFund_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9289 </li> <li><u> 2 </u>:  3 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CloseFund_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ClosedAGM </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ClosedAGM_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9291 </li> <li><u> 2 </u>:  1 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ClosedAGM_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistIssuesPublicLetter </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistIssuesPublicLetter_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9291 </li> <li><u> 2 </u>:  1 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistIssuesPublicLetter_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ActivistLetterToRegulatoryBodies </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ActivistLetterToRegulatoryBodies_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9291 </li> <li><u> 2 </u>:  1 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ActivistLetterToRegulatoryBodies_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> LitigationInitiated </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/LitigationInitiated_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9291 </li> <li><u> 2 </u>:  1 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/LitigationInitiated_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> ConsentSolicitationInitiated </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/ConsentSolicitationInitiated_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9290 </li> <li><u> 2 </u>:  2 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/ConsentSolicitationInitiated_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SECFiling </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/SECFiling_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  9291 </li> <li><u> 2 </u>:  1 </li> <li><u> miss </u>:  7 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/SECFiling_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SeatsProposed </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/SeatsProposed_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  8 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/SeatsProposed_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SeatsGained </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/SeatsGained_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  7 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/SeatsGained_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> SeatsGainedMethod </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/SeatsGainedMethod_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 2 </u>:  1281 </li> <li><u> 3 </u>:  891 </li> <li><u> miss </u>:  7127 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/SeatsGainedMethod_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Ongoing </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Ongoing_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> No </u>:  8907 </li> <li><u> Yes </u>:  392 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Ongoing_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> WithdrewDemands </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/WithdrewDemands_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> No </u>:  8473 </li> <li><u> Yes </u>:  826 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/WithdrewDemands_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> PartiallySuccessful </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/PartiallySuccessful_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> No </u>:  8687 </li> <li><u> Yes </u>:  612 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/PartiallySuccessful_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Successful </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Successful_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> No </u>:  6659 </li> <li><u> Yes </u>:  2640 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Successful_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Unsuccessful </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Unsuccessful_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> No </u>:  7055 </li> <li><u> Yes </u>:  2244 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Unsuccessful_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> CompromiseOrSettlement </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/CompromiseOrSettlement_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> No </u>:  9164 </li> <li><u> Yes </u>:  135 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/CompromiseOrSettlement_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Unresolved </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Unresolved_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> No </u>:  9041 </li> <li><u> Yes </u>:  258 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Unresolved_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Buyer </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Buyer_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  912 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Buyer_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> Succession </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/Succession_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  9299 / 9299  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  6979 </li> <li><u> 1 </u>:  2320 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/Succession_3.png' height='150' width='150'><br></div>
+</div>
+</div>
+</div>
+                <div data-role='popup' id='myContainer' style='display: none;'>
+                <img id='popup_img' src='' />
+                </div>
+                </div>
+                </div>
+                </div>
+                <p>
+                <div class='onetoone'>
+                <form id='myform2'>
+                <span> <input type='button' id='less' value=' << '> </span>
+                <span> <input id='idx' name='idx' value='1'></input></span>
+                <span> <input type='button' id='more' value=' >> '> </span>
+                </form>
+                </div>
+                <p>
+                </body></html>
+                
